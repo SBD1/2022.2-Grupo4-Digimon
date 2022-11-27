@@ -1,1 +1,1 @@
-# Diagrama Entidade-Relacionamento (DER)
+# Diagrama Entidade Relacionamento (DER)
