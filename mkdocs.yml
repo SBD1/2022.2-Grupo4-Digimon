@@ -1,0 +1,30 @@
+site_name: SBD1 Digimon
+
+repo_name: "SBD1 Digimon Rep"
+repo_url: "https://github.com/SBD1/2022.2-Grupo8-Digimon"
+
+theme:
+    name: material
+    language: pt
+    features:
+        - navigation.tabs
+        - navigation.expand
+    font:
+        text: Poppins
+        code: Roboto Mono
+      
+markdown_extensions:
+    - pymdownx.highlight
+    - pymdownx.superfences
+
+extra_css:
+    - assets/stylesheets/styles.css
+
+nav:
+    - Home: index.md
+    - Modelagem:
+        - Diagrama Entidade Relacionamento (DER): modelagem/diagrama_entidade_relacionamento.md
+        - Diagrama Relacional: modelagem/diagrama_relacional.md
+        - Dicionário de Dados: modelagem/dicionario_de_dados.md
+    - Apresentações:
+          - Apresentação Módulo 1: apresentacoes/modulo_1.md
