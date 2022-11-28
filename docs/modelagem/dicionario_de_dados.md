@@ -1,5 +1,5 @@
 # Dicionário de Dados
-
+ 
 ## Entidade: jogador
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
