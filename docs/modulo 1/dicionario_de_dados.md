@@ -15,7 +15,7 @@
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | id  | Determinante  | int  | 4 | Número de identificação do jogador | 0001 |
-| turno  | Simples  | varchar  | 10 | Seu turno ou do adversário | Seu ou adversário |
+| turno  | Simples  | int  | 4 | Seu turno ou do adversário | 4 |
 | resultado | Simples | char | 1 | Vitória ou derrota | V ou F |
 | id_vencedor | Simples | int | 4 | Número de identificação do jogador vencedor | 0001 |
 
@@ -23,8 +23,8 @@
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | id  | Determinante  | int  | 4 | Número de identificação da ação | 0014 |
-| ordem | Simples | varchar | 100 | Ordem do jogador | Atacar adversário |
-| realizada | Simples | varchar | 20 | Ordem realizada ou não | realizada ou não realizada |
+| ordem | Simples | int | 4 | Ordem do jogador | 2 |
+| realizada | Simples | bool | 1 | Ordem realizada ou não | true |
 
 ## Entidade: posicao
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
@@ -45,7 +45,7 @@
 | id  | Determinante  | int  | 4 | Número de identificador da instância do digimon | 5345 |
 | xp | Simples | int | 4 | Experiência adquirida após um batalha | 1500 |
 | nivel | Simples | int | 2 | Nível do digimon | 48 |
-| ataque | Simples | varchar | 20 | Habilidade de ataque do digimon | Golpe no adversário |
+| ataque | Simples | int | 4 | Habilidade de ataque do digimon | 150 |
 | vida | Simples | int | 3 | Vida base do digimon | 100 |
 | velocidade | Simples | int | 3 | Velocidade de ataque do digimon | 300 |
 
