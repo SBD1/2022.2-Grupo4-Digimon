@@ -49,14 +49,14 @@
 | vida | Simples | int | 3 | Vida base do digimon | 100 |
 | velocidade | Simples | int | 3 | Velocidade de ataque do digimon | 300 |
 
-## Entidade: ataques
+## Entidade: ataque
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | id  | Determinante  | int  | 4 | Número de identificador do ataque | 6465 |
 | nome | Simples | varchar | 20 | Nome do ataque | Golpe de fogo |
 | dano | Simples | int | 3 | Quantidade de dano do ataque | 40 |
 | casas | Simples | int | 2 | Número da casa onde o digimon está | 7 |
-| direcao | Simples | varchar | 20 | Para qual digimon vai ser o ataque | Atacar agumon |
+| direcao | Simples | varchar | 20 | Para qual digimon vai ser o ataque | horizontal |
 
 ## Entidade: digimon_base
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
