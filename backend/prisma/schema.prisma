@@ -18,6 +18,7 @@ model Jogador {
   vitorias_digimon   Int
   vitorias_jogadores Int
   total_partidas     Int
+  instancia_digimon  InstanciaDigimon[]
 
   @@map("jogadores")
 }
@@ -61,6 +62,9 @@ model InstanciaDigimon {
   ataque     Int
   vida       Int
   velocidade Int
+  jogador    Jogador @relation(fields: [jogador_id], references: [id])
+  jogador_id Int
+  ataques Ataque[]
 
   @@map("instancia_digimon")
 }
