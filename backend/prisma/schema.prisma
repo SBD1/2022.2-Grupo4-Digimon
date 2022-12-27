@@ -64,7 +64,9 @@ model InstanciaDigimon {
   velocidade Int
   jogador    Jogador @relation(fields: [jogador_id], references: [id])
   jogador_id Int
-  ataques Ataque[]
+  ataques_digimons Ataque[]
+  digimon_base DigimonBase @relation(fields: [digimon_base_id], references: [id])
+  digimon_base_id Int 
 
   @@map("instancia_digimon")
 }
@@ -75,6 +77,8 @@ model Ataque {
   dano    Int
   casas   Int
   direcao String
+  instancia_digimon InstanciaDigimon @relation(fields: [instancia_digimon_id], references: [id])
+  instancia_digimon_id Int
 
   @@map("ataques")
 }
@@ -89,6 +93,10 @@ model DigimonBase {
   vida_por_nivel       Int
   ataque_por_nivel     Int
   velocidade_por_nivel Int
+  instancia_digimons InstanciaDigimon[]
+
+
+  
 
   @@map("digimon_base")
 }
