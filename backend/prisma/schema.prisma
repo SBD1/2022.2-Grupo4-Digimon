@@ -32,9 +32,9 @@ model Batalha {
 }
 
 model Acao {
-  id     Int @id @default(autoincrement())
-  eixo_x Int
-  eixo_y Int
+  id            Int @id @default(autoincrement())
+  foi_realizada Boolean    @default(false)
+  eixo_y        Int
 
   @@map("ações")
 }
