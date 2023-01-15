@@ -10,6 +10,6 @@ const client = new Client({
     ssl: true
 })
 
-client.connect();
+// client.connect();
 
 module.exports = client;
