@@ -22,9 +22,10 @@ extra_css:
 
 nav:
     - Home: index.md
-    - Modelagem:
-        - Diagrama Entidade Relacionamento (DER): modelagem/diagrama_entidade_relacionamento.md
-        - Diagrama Relacional: modelagem/diagrama_relacional.md
-        - Dicionário de Dados: modelagem/dicionario_de_dados.md
+    - Módulo 1:
+        - Diagrama Entidade Relacionamento (DER): modulo_1/diagrama_entidade_relacionamento.md
+        - Diagrama Relacional: modulo_1/diagrama_relacional.md
+        - Dicionário de Dados: modulo_1/dicionario_de_dados.md
     - Apresentações:
           - Apresentação Módulo 1: apresentacoes/modulo_1.md
+          - Apresentação Módulo 2: apresentacoes/modulo_2.md
