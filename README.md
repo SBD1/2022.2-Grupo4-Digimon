@@ -1,4 +1,4 @@
-# Grupo4 - Digimon
+# Grupo 4 - Digimon
 
 Um grupo de crianças é levado para um reino digital, e lá encontram monstros falantes que os ajudam na batalha contra uma ameaça aos seus dois mundos.
 
