@@ -42,6 +42,4 @@
 
 ### Relacionamentos
 
-![Diagrama Relacional](images/diagrama_relacional.png "Diagrama Relacional")
-
-
+![Diagrama Relacional](diagrama_images/diagrama_relacional.png "Diagrama Relacional")
