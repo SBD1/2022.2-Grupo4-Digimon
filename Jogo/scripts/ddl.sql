@@ -1,4 +1,3 @@
-
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE "mapa" (
@@ -306,20 +305,3 @@ CREATE TABLE "mercador_item" (
      CONSTRAINT "mercador_item_mercador_fkey" FOREIGN KEY ("id_npc_mercador") REFERENCES "npc_mercador"("id_npc_mercador"),
     CONSTRAINT "mercador_item_item_fkey" FOREIGN KEY ("id_item") REFERENCES "item"("id_item")
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
