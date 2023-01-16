@@ -4,15 +4,17 @@ const db = require('./util/db');
 async function jogar() {
     console.clear();    
 
-    //const nomeJogador = prompt("Digite o nome do seu jogar: ");
+    const nomeJogador = prompt("Digite o nome do seu jogar: ");
 
-    const res = await db.query(`SELECT * FROM categoria_jogador`);
-    console.log(res);
     console.log("Selecione a categoria do seu jogador: ");
-    console.log("1. ");
-    console.log("2. ");
-    console.log("3. ");
-    //const categoriaJogador = prompt("Digite a categoria do seu jogador: ");
+    console.log("1. Duelista");
+    console.log("2. Suporte");
+    console.log("3. Conservador");
+    const categoriaJogador = prompt("Digite a categoria do seu jogador: ");
+
+    const idCategoriaJogador = db.query(`SELECT id_categoria_jogador FROM categoria_jogador WHERE tipo = ${categoriaJogador}`);
+
+    const res = db.query(`INSERT INTO jogador (nome, id_categoria_jogador, id_regiao) VALUES (${nomeJogador}, ${idCategoriaJogador}, id_regiao) `);
 }
 
 async function conectarBanco() {
