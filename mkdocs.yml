@@ -26,6 +26,6 @@ nav:
         - Diagrama Entidade Relacionamento (DER): modulo_1/diagrama_entidade_relacionamento.md
         - Diagrama Relacional: modulo_1/diagrama_relacional.md
         - Dicionário de Dados: modulo_1/dicionario_de_dados.md
-    - Apresentações:
-          - Apresentação Módulo 1: apresentacoes/modulo_1.md
-          - Apresentação Módulo 2: apresentacoes/modulo_2.md
+        - Apresentação: modulo_1/apresentacao/modulo_1.md
+    - Módulo 2:
+        - Apresentação: modulo_1/apresentacao/modulo_2.md
