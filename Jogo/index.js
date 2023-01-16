@@ -1,9 +1,18 @@
 var prompt = require('prompt-sync')();
 const db = require('./util/db');
 
-function jogar() {
+async function jogar() {
     console.clear();    
 
+    //const nomeJogador = prompt("Digite o nome do seu jogar: ");
+
+    const res = await db.query(`SELECT * FROM categoria_jogador`);
+    console.log(res);
+    console.log("Selecione a categoria do seu jogador: ");
+    console.log("1. ");
+    console.log("2. ");
+    console.log("3. ");
+    //const categoriaJogador = prompt("Digite a categoria do seu jogador: ");
 }
 
 async function conectarBanco() {
