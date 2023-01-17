@@ -10,7 +10,7 @@
 | dinheiro | Simples  | int  | 6 | Vitória contra monstros digimon | 100000 |
 
 
-## Entidade: categoria
+## Entidade: categoria_jogador
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | id_categoria  | Determinante  | uuid  | 35 | Número de identificação da categoria | 0001 |
@@ -203,7 +203,7 @@
 | valocidade_por_nivel | Simples | int | 3 | Quantidade de velocidade de ataque que o digimon ganha ao subir de nível | 25 |
 
 
-## Entidade: categoria
+## Entidade: categoria_digimon
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | id_categoria  | Determinante  | uuid  | 35 | Número de identificador da categoria | 8685 |
