@@ -3,8 +3,10 @@ const db = require("./util/db");
 const jogador = require("./util/jogador");
 
 async function jogar() {
-  const nomeJogador = await jogador.criarJogador(); // cria jogador
-  const resRegiao = await jogador.movimentarJogador(nomeJogador); // cria jogador
+  const jogadorCriado = await jogador.criarJogador(); // cria jogador
+  console.log(jogadorCriado)
+  const resRegiao = await jogador.getRegiao(jogadorCriado);
+  await jogador.movimentaJogador(resRegiao); // cria jogador
 }
 
 async function conectarBanco() {
