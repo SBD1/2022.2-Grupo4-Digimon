@@ -76,6 +76,7 @@
     - velocidade
     - vida_atual
 
+
 ### Atributos
 
 #### 
@@ -83,30 +84,95 @@
 
 **Digivice**: <ins>id_digivice</ins>;
 
-**NPC**: <ins>id_npc</ins>, nome
+**NPC**: <ins>id_npc</ins>, nome;
 
-**Missão**: <ins>id_missao</ins>, nome, experiencia
+**Missão**: <ins>id_missao</ins>, nome, experiencia;
 
-**Dialogo**: <ins>id_dialogo</ins>, texto
+**Dialogo**: <ins>id_dialogo</ins>, texto;
 
-**Mercador**: tipo
+**Mercador**: tipo;
 
-**Região**: <ins>id_regiao</ins>, nome, eixo_x, eixo_y
+**Região**: <ins>id_regiao</ins>, nome, eixo_x, eixo_y;
 
-**Item**: <ins>id_item</ins>, nome, preco_de_venda, descricao
+**Item**: <ins>id_item</ins>, nome, preco_de_venda, descricao;
 
-**Instancia_item**: <ins>id_instancia_item</ins>, quantidade
+**Instancia_item**: <ins>id_instancia_item</ins>, quantidade;
 
-**Digimon**: <ins>id_digimon</ins>, nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel
+**Digimon**: <ins>id_digimon</ins>, nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel;
 
-**Instancia_Digimon**: <ins>id_instancia_digimon</ins>, nivel, ataque, defesa, vida, velocidade, vida_atual
+**Instancia_Digimon**: <ins>id_instancia_digimon</ins>, nivel, ataque, defesa, vida, velocidade, vida_atual;
 
-**Habilidade**: <ins>id_habilidade</ins>, nome, descricao
+**Habilidade**: <ins>id_habilidade</ins>, nome, descricao;
 
-**Monstro**: nivel, ataque, defesa, vida, velocidade, vida_atual
+**Monstro**: nivel, ataque, defesa, vida, velocidade, vida_atual.
 
 
 
 ### Relacionamentos
+
+#### Jogador - está - Região
+- Um <em>Jogador</em> **está** em uma <em>Região</em>. Cardinalidade (1 : 1);
+- A Região pode conter um Jogador. Cardinalidade (0 : 1);
+
+#### Jogador - possui - Digivice
+- Um Jogador possuir um Digivice. Cardinalidade (1 : 1)
+- Um Digivice é possído por um Jogador. Cardinalidade (1 : 1)
+
+#### Jogador - possui - Categoria
+- Um Jogador possui uma Categoria. Cardinalidade (1 : 1)
+- Uma Categoria pode contér nenhum ou vários Jogador(s). Cardinalidade (0 : N)
+
+#### Jogador - realiza - Missão REALIZA??
+
+#### Digivice - possui - Instancia_Item
+- Digivice pode possuir nenhum ou várias Instancia_Item(s). Cardinalidade (0 : N)
+- Instancia_Item é armazenada em um Digivice. Cardinalidade (1 : 1)
+
+#### Digivice - armazena - Instancia_Digimon
+- Digivice pode possuir um ou várias Instancia_Digimon(s). Cardinalidade (1 : N)
+- Instancia_Digimon é armazenada em um Digivice. Cardinalidade (1 : 1)
+
+#### Instancia_Digimon - referencia - Digimon
+- Instancia_Digimon referencia um Digimon. Cardinalidade (1 : 1)
+- Digimon pode ser referenciado por nenhum ou várias Instancia_Digimon(s). Cardinalidade (0 : N)
+
+#### Instancia_Digimon - participa - Batalha
+- Instancia_Digimon pode participar de nenhuma ou várias batalhas. Cardinalidade (0 : N)
+- Batalha deve ter uma Instancia_Digimon. Cardinalidade (1 : 1)
+
+#### Instancia_Digimon - usa - Instancia_Item
+- Instancia_Digimon pode usar nenhuma ou várias Instancia_Item(s). Cardinalidade (0 : N)
+- Instancia_Item deve ser usada por uma Instancia_Digimon. Cardinalidade (1 : 1)
+
+#### Instancia_Item - refencia - Item
+- Instancia_Digimon referencia um Item. Cardinalidade (1 : 1)
+- Item pode ser referenciado por nenhum ou várias Instancia_Digimon(s). Cardinalidade (0 : N)
+
+#### Missao - possui - Dialogo
+- Missao pode possuir nenhum ou várias Dialogo(s). Cardinalidade (0 : N)
+- Item pode ser referenciado por nenhum ou várias Instancia_Digimon(s). Cardinalidade (0 : N)
+
+#### Missao - entrega - Item
+
+#### NPC - esta - Regiao
+
+#### NPC - realiza - Dialogo
+
+#### Digimon - possui - Habilidade
+
+#### Digimon - possui - Categoria
+
+#### Monstro - referencia - Digimon
+
+#### Monstro - participa - Batalha
+
+#### Batalha - recompensa - Item
+
+#### Mapa - contém - Região
+
+#### Região - conecta - Região
+
+### VENDE??
+
 
 <!-- ![Diagrama Relacional](diagrama_images/diagrama_relacional.png "Diagrama Relacional") -->
