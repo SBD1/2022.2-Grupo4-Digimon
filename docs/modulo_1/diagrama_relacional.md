@@ -79,7 +79,6 @@
 
 ### Atributos
 
-#### 
 **Jogador**: <ins>id_jogador</ins>, nome, vitorias, derrotas, dinheiro;
 
 **Digivice**: <ins>id_digivice</ins>;
@@ -105,7 +104,6 @@
 **Habilidade**: <ins>id_habilidade</ins>, nome, descricao;
 
 **Monstro**: nivel, ataque, defesa, vida, velocidade, vida_atual.
-
 
 
 ### Relacionamentos
@@ -153,16 +151,28 @@
 - Item pode ser referenciado por nenhum ou várias Instancia_Digimon(s). Cardinalidade (0 : N)
 
 #### Missao - entrega - Item
+- Missao pode entregar nenhum ou vários Item(S). Cardinalidade (0 : N)
+- Item pode ser entregue por nenhuma ou várias Missao(s). Cardinalidade (0 : N)
 
 #### NPC - esta - Regiao
+- NPC deve estar em uma Regiao. Cardinalidade (1 : 1)
+- Regiao pode conter nenhum ou vários NPC(s). Cardinalidade (0 : N)
 
 #### NPC - realiza - Dialogo
+- NPC pode realizar nenhum ou vários Dialogos(s). Cardinalidade (0 : N)
+- Dialogo pode ser realizado por nenhum ou um NPC. Cardinalidade (0 : 1)
 
 #### Digimon - possui - Habilidade
+- Digimon pode possuir nenhum ou várias Habilidade(s). Cardinalidade (0 : N)
+- Habilidade pode usada por nenhum ou váriaos Digimon(s). Cardinalidade (0 : N)
 
 #### Digimon - possui - Categoria
+- Um Digimon possui uma Categoria. Cardinalidade (1 : 1)
+- Uma Categoria pode contér nenhum ou vários Digimon(s). Cardinalidade (0 : N)
 
 #### Monstro - referencia - Digimon
+- Monstro referencia um Digimon. Cardinalidade (1 : 1)
+- Digimon pode ser referenciado por nenhum ou várias Monstro(s). Cardinalidade (0 : N)
 
 #### Monstro - participa - Batalha
 
