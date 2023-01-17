@@ -81,6 +81,20 @@
 | nome | Simples | varchar | 20 | Nome do npc| Pedro |
 | tipo | Simples | enum | 6 | Tipo de mercador | Mercador de armas |
 
+## Entidade: armeiro
+| Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| id_npc  | Determinante  | uuid  | 35 | Número de identificador do mercador | 6465 |
+| nome | Simples | varchar | 20 | Nome do npc| Pedro |
+| tipo | Simples | enum | 6 | Tipo de mercador | Mercador de armas |
+
+## Entidade: fruteiro
+| Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| id_npc  | Determinante  | uuid  | 35 | Número de identificador do mercador | 6465 |
+| nome | Simples | varchar | 20 | Nome do npc| Pedro |
+| tipo | Simples | enum | 6 | Tipo de mercador | Mercador de armas |
+
 ## Entidade: vende
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
