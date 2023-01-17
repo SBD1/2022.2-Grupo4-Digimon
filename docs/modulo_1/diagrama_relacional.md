@@ -129,7 +129,7 @@
 
 - Capanga
 
--Chefe 
+- Chefe 
     - defesa_extra
     - ataque_extra
     - vida_extra
