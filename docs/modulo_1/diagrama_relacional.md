@@ -331,11 +331,11 @@
 - Batalha deve ter um ou dois monstro(s) participando. Cardinalidade (1 : 2)
 
 #### Batalha - recompensa - Item
-- Batalha pode recompensar com nenhum ou vários Item(s). Cardinalidade (0 : n)
-- Item pode ser a recompensa de nenhuma ou várias Batalha(S). Cardinalidade (0 : n)
+- Batalha pode recompensar com nenhum ou vários Item(s). Cardinalidade (0 : N)
+- Item pode ser a recompensa de nenhuma ou várias Batalha(S). Cardinalidade (0 : N)
 
 #### Mapa - contém - Região
-- Mapa pode ter uma ou várias Região(ões). Cardinalidade (0 : n)
+- Mapa pode ter uma ou várias Região(ões). Cardinalidade (0 : N)
 - Região deve estar contida em um Mapa. Cardinalidade (1 : 1)
 
 #### Região - conecta - Região
@@ -343,8 +343,8 @@
 - Região estar conectada a nenhuma ou até 4 Região(ões). Cardinalidade (0 : 4)
 
 ### Mercador - vende - Item
-- Mercador pode vender nenhum ou vários Item(s). Cardinalidade (0 : n)
-- Item pode ser vendico por nenhum ou vários Mercador(es). Cardinalidade (0 : n)
+- Mercador pode vender nenhum ou vários Item(s). Cardinalidade (0 : N)
+- Item pode ser vendico por nenhum ou vários Mercador(es). Cardinalidade (0 : N)
 
 
 <!-- ![Diagrama Relacional](diagrama_images/diagrama_relacional.png "Diagrama Relacional") -->
