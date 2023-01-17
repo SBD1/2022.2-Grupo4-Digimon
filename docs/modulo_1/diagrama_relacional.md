@@ -184,6 +184,12 @@
 
 ### Atributos
 
+Legenda:
+
+- <ins>sublinhado</ins> -> chave primária
+
+- **negrito** -> chave estrangeira
+
 #### 
 **Mapa**: <ins>id_mapa</ins>, altura, largura, descricao;
 
@@ -342,7 +348,7 @@
 - Região pode se conectar a nenhuma ou até 4 Região(ões). Cardinalidade (0 : 4)
 - Região estar conectada a nenhuma ou até 4 Região(ões). Cardinalidade (0 : 4)
 
-### Mercador - vende - Item
+#### Mercador - vende - Item
 - Mercador pode vender nenhum ou vários Item(s). Cardinalidade (0 : N)
 - Item pode ser vendico por nenhum ou vários Mercador(es). Cardinalidade (0 : N)
 
