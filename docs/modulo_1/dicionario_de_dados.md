@@ -10,7 +10,7 @@
 | dinheiro | Simples  | int  | 6 | Vitória contra monstros digimon | 100000 |
 
 
-## Entidade: categoria
+## Entidade: categoria_jogador
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | id_categoria  | Determinante  | uuid  | 35 | Número de identificação da categoria | 0001 |
@@ -22,10 +22,8 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | id_regiao  | Determinante  | uuid  | 35| Número de identificação da região | 0001 |
 | nome  | Simples  | varchar  | 20 | nome da região | Loja |
-| eixo_x | Simples | int | 1 | Coordenada do objeto no eixo x | No mínimo: 0
-No máximo: 3 |
-| eixo_y | Simples | int | 1 | Coordenada do objeto no eixo y | No mínimo: 0
-No máximo: 2 |
+| eixo_x | Simples | int | 1 | Coordenada do objeto no eixo x | No mínimo: 0 e No máximo: 3 |
+| eixo_y | Simples | int | 1 | Coordenada do objeto no eixo y | No mínimo: 0 e No máximo: 2 |
 
 ## Entidade: mapa
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
@@ -77,6 +75,20 @@ No máximo: 2 |
 
 
 ## Entidade: mercador
+| Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| id_npc  | Determinante  | uuid  | 35 | Número de identificador do mercador | 6465 |
+| nome | Simples | varchar | 20 | Nome do npc| Pedro |
+| tipo | Simples | enum | 6 | Tipo de mercador | Mercador de armas |
+
+## Entidade: armeiro
+| Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| id_npc  | Determinante  | uuid  | 35 | Número de identificador do mercador | 6465 |
+| nome | Simples | varchar | 20 | Nome do npc| Pedro |
+| tipo | Simples | enum | 6 | Tipo de mercador | Mercador de armas |
+
+## Entidade: fruteiro
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | id_npc  | Determinante  | uuid  | 35 | Número de identificador do mercador | 6465 |
@@ -205,7 +217,7 @@ No máximo: 2 |
 | valocidade_por_nivel | Simples | int | 3 | Quantidade de velocidade de ataque que o digimon ganha ao subir de nível | 25 |
 
 
-## Entidade: categoria
+## Entidade: categoria_digimon
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | id_categoria  | Determinante  | uuid  | 35 | Número de identificador da categoria | 8685 |

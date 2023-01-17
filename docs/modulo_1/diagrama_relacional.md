@@ -4,47 +4,72 @@
 
 ### Entidades
 
-- Jogador
-    - id_jogador
-    - nome
-    - vitorias
-    - derrotas
-    - dinheiro
-
-- Digivice
-    - id_digivice
-
-- NPC
-    - id_npc
-    - nome
-
-- Missão
-    - id_missao
-    - nome
-    - experiencia
-
-- Dialogo
-    - id_dialogo
-    - texto
-
-- Mercador
-    - tipo
+- Mapa
+    - id_mapa
+    - altura
+    - largura
+    - descricao
 
 - Região
     - id_regiao
     - nome
     - eixo_x
     - eixo_y
+    - id_mapa
 
-- Item
-    - id_item
+- Região_Região
+   - id_regiao1
+   - id_regiao2
+
+- Categoria_Jogador
+    - id_categoria_jogador
+    - historia
+    - tipo
+
+- Jogador
+    - id_jogador
     - nome
-    - preco_de_venda
+    - vitorias
+    - derrotas
+    - dinheiro
+    - id_categoria_jogador
+    - id_regiao
+
+- Digivice
+    - id_digivice
+    - id_jogador
+
+- Categoria_Digimon
+    - id_categoria_digimon
+
+- Anjo
+    - defesa_extra
+
+- Fantasma
+    - ataque_extra
+
+- Monge
+    - vida_extra
+
+- Ciborg
+    - velocidade_extra
+
+- Dragão
+    - defesa_extra
+    - ataque_extra
+    - vida_extra
+    - velocidade_extra
+
+- Habilidade
+    - id_habilidade
+    - nome
     - descricao
 
-- Instancia_item
-    - id_instancia_item
-    - quantidade
+- Ataque
+    - dano
+
+- Defesa
+    - defesa
 
 - Digimon
     - id_digimon
@@ -53,63 +78,194 @@
     - defesa_por_nivel
     - vida_por_nivel
     - velocidade_por_nivel
+    - id_categoria_digimon
+
+- Habilidade_Digimon
+    - id_digimon
+    - id_habilidade
+
+- Item
+    - id_item
+    - nome
+    - preco_de_venda
+    - descricao
+
+- Alimento
+    - experiencia
+    - cura
+
+- Chave
+    - tipo
+
+- Equipamento
+    - defesa_extra
+    - ataque_extra
+    - vida_extra
+    - velocidade_extra
+
+- Instancia_item
+    - id_instancia_item
+    - quantidade
+    - id_item
+    - id_digivice
 
 - Instancia_Digimon
     - id_instancia_digimon
     - nivel
-    - ataque
-    - defesa
-    - vida
-    - velocidade
     - vida_atual
+    - id_digimon
+    - id_digivice
 
-- Habilidade
-    - id_habilidade
-    - nome
-    - descricao
+- Batalha
+    - id_batalha
+    - id_instancia_digimon
 
 - Monstro
+    - id_monstro
     - nivel
-    - ataque
-    - defesa
-    - vida
-    - velocidade
     - vida_atual
+    - id_digimon
+    - id_batalha
+
+- Capanga
+
+- Chefe 
+    - defesa_extra
+    - ataque_extra
+    - vida_extra
+    - velocidade_extra
+    
+- Item_Batalha
+    - id_item
+    - id_batalha
+
+- Instancia_digimon_Instancia_item
+    - id_instancia_digimon
+    - id_instancia_item
+
+- NPC
+    - id_npc
+    - nome
+    - id_regiao
+
+- Habitante
+
+- Curandeiro
+
+- Guia
+    - id_npc_guia
+
+- Mercador
+   - id_npc_mercador
+   - tipo
+
+- Missão
+    - id_missao
+    - nome
+    - experiencia
+    - id_npc_guia
+
+- Missao_Jogador
+   - id_missao
+   - id_jogador
+   - concluida
+
+- Dialogo
+    - id_dialogo
+    - texto
+    - id_missao
+    - id_jogador
+
+- Mercador_Item
+    - id_npc_mercador
+    - id_item
+    - preco
 
 
 ### Atributos
 
-**Jogador**: <ins>id_jogador</ins>, nome, vitorias, derrotas, dinheiro;
+Legenda:
 
-**Digivice**: <ins>id_digivice</ins>;
+- <ins>sublinhado</ins> -> chave primária
 
-**NPC**: <ins>id_npc</ins>, nome;
+- **negrito** -> chave estrangeira
 
-**Missão**: <ins>id_missao</ins>, nome, experiencia;
+#### 
+**Mapa**: <ins>id_mapa</ins>, altura, largura, descricao;
 
-**Dialogo**: <ins>id_dialogo</ins>, texto;
+**Região**: <ins>id_regiao</ins>, nome, eixo_x, eixo_y, **id_mapa**;
 
-**Mercador**: tipo;
+**Região_Região**: <ins>**id_regiao1**</ins>, <ins>**id_regiao1**</ins>;
 
-**Região**: <ins>id_regiao</ins>, nome, eixo_x, eixo_y;
+**Categoria_jogador**: <ins>id_categoria_jogador</ins>, historia, tipo;
 
-**Item**: <ins>id_item</ins>, nome, preco_de_venda, descricao;
+**Jogador**: <ins>id_jogador</ins>, nome, vitorias, derrotas, dinheiro, **id_categoria_jogador**, **id_regiao**;
 
-**Instancia_item**: <ins>id_instancia_item</ins>, quantidade;
+**Digivice**: <ins>id_digivice</ins>, **id_jogador**;
 
-**Digimon**: <ins>id_digimon</ins>, nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel;
+**Categoria_digimon**: <ins>id_categoria_digimon</ins>;
 
-**Instancia_Digimon**: <ins>id_instancia_digimon</ins>, nivel, ataque, defesa, vida, velocidade, vida_atual;
+**Anjo**: defesa_extra;
+
+**Fantasma**: ataque_extra;
+
+**Monge**: vida_extra;
+
+**Ciborg**: velocidade_extra;
+
+**Dragao**: defesa_extra, ataque_extra, vida_extra, velocidade_extra;
 
 **Habilidade**: <ins>id_habilidade</ins>, nome, descricao;
 
-**Monstro**: nivel, ataque, defesa, vida, velocidade, vida_atual.
+**Ataque**: dano;
+
+**Defesa**: defesa;
+
+**Digimon**: <ins>id_digimon</ins>, nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, **id_categoria_digimon**;
+
+**Digimon_habilidade**: <ins>**id_digimon**</ins>, <ins>**id_habilidade**</ins>;
+
+**Item**: <ins>id_item</ins>, nome, preco_de_venda, descricao;
+
+**Alimento**: experiencia, cura;
+
+**Chave**: tipo;
+
+**Equipamento**: defesa_extra, ataque_extra, vida_extra, velocidade_extra;
+
+**Instancia_item**: <ins>id_instancia_item</ins>, quantidade, **id_item**, **id_digivice**;
+
+**Instancia_Digimon**: <ins>id_instancia_digimon</ins>, nivel, vida_atual, **id_digimon**, **id_digivice**;
+
+**Batalha**: <ins>id_batalha</ins>,**id_instancia_digimon**;
+
+**Monstro**: <ins>id_monstro</ins>, nivel, vida_atual, **id_digimon**, **id_batalha**;
+
+**Chefe**: defesa_extra, ataque_extra, vida_extra, velocidade_extra;
+
+**Item_batalha**: <ins>**id_item**</ins>, <ins>**id_batalha**</ins>;
+
+**Instancia_digimon_instancia_item**: <ins>**id_instancia_digimon**</ins>, <ins>**id_instancia_item**</ins>;
+
+**NPC**: <ins>id_npc</ins>, nome, **id_regiao**;
+
+**Guia**: <ins>id_npc_guia</ins>;
+
+**Mercador**: <ins>id_npc_mercador</ins>, tipo;
+
+**Missão**: <ins>id_missao</ins>, nome, experiencia, **id_npc_guia**;
+
+**Missão_jogador**: <ins>**id_missao**</ins>, <ins>**id_jogador**</ins>, concluida;
+
+**Dialogo**: <ins>id_dialogo</ins>, texto, **id_missao**, **id_jogador**;
+
+**Mercador_item**: <ins>**id_npc_mercador**</ins>, <ins>**id_item**</ins>, preco;
 
 
 ### Relacionamentos
 
 #### Jogador - está - Região
-- Um <em>Jogador</em> **está** em uma <em>Região</em>. Cardinalidade (1 : 1);
+- Um Jogador está em uma Região. Cardinalidade (1 : 1);
 - A Região pode conter um Jogador. Cardinalidade (0 : 1);
 
 #### Jogador - possui - Digivice
@@ -120,7 +276,9 @@
 - Um Jogador possui uma Categoria. Cardinalidade (1 : 1)
 - Uma Categoria pode contér nenhum ou vários Jogador(s). Cardinalidade (0 : N)
 
-#### Jogador - realiza - Missão REALIZA??
+#### Jogador - realiza - Missão
+- Um Jogador realiza nenhuma ou várias missão(ões). Cardinalidade (0 : N)
+- Uma missão pode ser realizada por nenhum ou vários Jogador(es). Cardinalidade (0 : N)
 
 #### Digivice - possui - Instancia_Item
 - Digivice pode possuir nenhum ou várias Instancia_Item(s). Cardinalidade (0 : N)
@@ -175,14 +333,24 @@
 - Digimon pode ser referenciado por nenhum ou várias Monstro(s). Cardinalidade (0 : N)
 
 #### Monstro - participa - Batalha
+- Monstro deve participar de uma Batalha. Cardinalidade (1 : 1)
+- Batalha deve ter um ou dois monstro(s) participando. Cardinalidade (1 : 2)
 
 #### Batalha - recompensa - Item
+- Batalha pode recompensar com nenhum ou vários Item(s). Cardinalidade (0 : N)
+- Item pode ser a recompensa de nenhuma ou várias Batalha(S). Cardinalidade (0 : N)
 
 #### Mapa - contém - Região
+- Mapa pode ter uma ou várias Região(ões). Cardinalidade (0 : N)
+- Região deve estar contida em um Mapa. Cardinalidade (1 : 1)
 
 #### Região - conecta - Região
+- Região pode se conectar a nenhuma ou até 4 Região(ões). Cardinalidade (0 : 4)
+- Região estar conectada a nenhuma ou até 4 Região(ões). Cardinalidade (0 : 4)
 
-### VENDE??
+#### Mercador - vende - Item
+- Mercador pode vender nenhum ou vários Item(s). Cardinalidade (0 : N)
+- Item pode ser vendico por nenhum ou vários Mercador(es). Cardinalidade (0 : N)
 
 
 <!-- ![Diagrama Relacional](diagrama_images/diagrama_relacional.png "Diagrama Relacional") -->
