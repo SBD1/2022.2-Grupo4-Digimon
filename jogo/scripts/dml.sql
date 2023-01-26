@@ -30,3 +30,4 @@ INSERT INTO public.regiao (id_regiao, nome, eixo_x, eixo_y, id_mapa) VALUES(uuid
 INSERT INTO public.regiao (id_regiao, nome, eixo_x, eixo_y, id_mapa) VALUES(uuid_generate_v4(),'Reino do Agouro',3,2,'9a3b49c8-dc1d-4c3a-a5b5-5c5e5d5f6a7b');
 
 -- 
+call cria_alimento('biscoito', 'doce', 10, 1); --(nome,descricao,preco_de_venda,experiencia,cura) cura foi omitido por que quando não é mandado o defalt é 0
