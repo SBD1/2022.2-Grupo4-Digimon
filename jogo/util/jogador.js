@@ -107,7 +107,7 @@ function direita(posicao_x) {
     return false;
 }
 function esquerda(posicao_x) {
-    if (posicao_x > 1 && posicao_x <= 3) {
+    if (posicao_x >= 1 && posicao_x <= 3) {
         return true;
     }
     return false;
@@ -119,7 +119,7 @@ function cima(posicao_y) {
     return false;
 }
 function baixo(posicao_y) {
-    if (posicao_y >= 2 && posicao_y <= 1) {
+    if (posicao_y >= 1 && posicao_y <= 2) {
         return true;
     }
     return false;
