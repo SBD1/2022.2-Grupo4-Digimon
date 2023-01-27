@@ -1,5 +1,6 @@
 var prompt = require("prompt-sync")();
 const db = require("./util/db");
+
 const jogador = require("./util/jogador");
 
 async function movimentacao(jogadorAtualziado) {

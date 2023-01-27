@@ -1,6 +1,8 @@
 var prompt = require("prompt-sync")();
 const db = require("./db");
 
+const digivice = require("./digivice");
+
 async function selecionarJogador() {
     console.clear();
 
@@ -13,6 +15,8 @@ async function selecionarJogador() {
     }
 
     const jogadorCriado = await criarJogador(nomeJogador);
+
+    const digiviceCriada = await digivice.criaDigivice(jogadorCriado.id_jogador);
 
     return jogadorCriado;
 }
