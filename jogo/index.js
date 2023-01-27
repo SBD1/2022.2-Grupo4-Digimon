@@ -20,7 +20,7 @@ async function movimentacao(jogadorAtualziado) {
 }
 
 async function jogar() {
-  const jogadorCriado = await jogador.criarJogador(); // cria jogador
+  const jogadorCriado = await jogador.selecionarJogador(); // cria/recupera jogador
   const resRegiao = await jogador.getRegiao(jogadorCriado); // seleciona a regiao atual do jogador
   const jogadorAtualziado = await jogador.movimentaJogador(resRegiao, jogadorCriado); // moviamenta jogador
   movimentacao(jogadorAtualziado);
@@ -42,6 +42,7 @@ async function main() {
   console.log(); // colocar a historia do game
 
   await conectarBanco();
+  console.clear();
 
   // Menu
   console.log("\nSelecione uma opcao para comecar:");
