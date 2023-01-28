@@ -423,3 +423,59 @@ END IF;
 END;
 
 $cria_batalha$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE public.cria_habitante(IN nome character varying, IN eixoX integer, IN eixoY integer)
+ LANGUAGE plpgsql
+AS $procedure$
+
+DECLARE
+    idNpc UUID;
+   	idRegiaoNpc UUID;
+begin	
+select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
+		insert into npc ("nome","id_regiao") values (nome, idRegiaoNpc) returning "id_npc" into idNpc;
+		
+		insert into habitante ("id_npc")
+		values (idNpc);
+END;
+
+$procedure$
+;
+
+
+CREATE OR REPLACE PROCEDURE public.cria_guia(IN nome character varying, IN eixoX integer, IN eixoY integer)
+ LANGUAGE plpgsql
+AS $procedure$
+
+DECLARE
+    idNpc UUID;
+   	idRegiaoNpc UUID;
+begin	
+select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
+		insert into npc ("nome","id_regiao") values (nome, idRegiaoNpc) returning "id_npc" into idNpc;
+		
+		insert into guia  ("id_npc")
+		values (idNpc);
+END;
+
+$procedure$
+;
+
+CREATE OR REPLACE PROCEDURE public.cria_mercador(IN nome character varying, IN eixoX integer, IN eixoY integer, in tipoMercador tipo_mercador)
+ LANGUAGE plpgsql
+AS $procedure$
+
+DECLARE
+    idNpc UUID;
+   	idRegiaoNpc UUID;
+begin	
+select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
+		insert into npc ("nome","id_regiao") values (nome, idRegiaoNpc) returning "id_npc" into idNpc;
+		
+		insert into mercador  ("id_npc", "tipo")
+		values (idNpc, tipoMercador);
+END;
+
+$procedure$
+;
+;

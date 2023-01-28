@@ -37,3 +37,16 @@ call cria_chave('chave maldita', 'chave para desbloquear as portas do inferno', 
 call cria_equipamento('anel', 'joia', 20, 10, 10, 2, 2);
 call cria_equipamento('espada', 'armamento', 50, 0, 20, 0, 0);
 call cria_equipamento('escudo', 'protecao', 40, 20, 0, 0, 0);
+
+call cria_monge(10) --atributo de vida por nivel, ou seja aumentara 10 a cada nivel evoluido.
+call cria_anjo(8); -- atributo de defesa por nivel, ou seja aumentara 8 a cada nivel evoluido.
+call cria_ciborg(10); -- atributo de velocidade por nivel.
+call cria_dragao(7, 7, 7, 7); -- atributos de defesa, ataque, vida, velocidae. todos por niveis.
+call cria_fantasma(12); -- atributo de ataque por nivel.
+
+call cria_guia('Mestre antigo', 0, 0);
+call cria_habitante('kleber',3,2);
+call cria_habitante('velho de caelid',3,2);
+call cria_mercador ('Kleber do fuzil', 0,0, 'comerciante de armas'::tipo_mercador);
+
+
