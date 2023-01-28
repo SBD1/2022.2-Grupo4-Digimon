@@ -29,5 +29,11 @@ INSERT INTO public.regiao (id_regiao, nome, eixo_x, eixo_y, id_mapa) VALUES(uuid
 INSERT INTO public.regiao (id_regiao, nome, eixo_x, eixo_y, id_mapa) VALUES(uuid_generate_v4(),'Caelid',2,2,'9a3b49c8-dc1d-4c3a-a5b5-5c5e5d5f6a7b');
 INSERT INTO public.regiao (id_regiao, nome, eixo_x, eixo_y, id_mapa) VALUES(uuid_generate_v4(),'Reino do Agouro',3,2,'9a3b49c8-dc1d-4c3a-a5b5-5c5e5d5f6a7b');
 
--- 
+-- Utilizacao de Stored Procedures
 call cria_alimento('biscoito', 'doce', 10, 1); --(nome,descricao,preco_de_venda,experiencia,cura) cura foi omitido por que quando não é mandado o defalt é 0
+call cria_alimento('framboesa', 'fruta', 5, 1, 1);
+call cria_chave('chave bendita', 'chave para desbloquear as portas do ceu', 'A');
+call cria_chave('chave maldita', 'chave para desbloquear as portas do inferno', 'B');
+call cria_equipamento('anel', 'joia', 20, 10, 10, 2, 2);
+call cria_equipamento('espada', 'armamento', 50, 0, 20, 0, 0);
+call cria_equipamento('escudo', 'protecao', 40, 20, 0, 0, 0);
