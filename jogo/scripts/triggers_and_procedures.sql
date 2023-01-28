@@ -316,3 +316,110 @@ begin
 END;
 
 $apaga_anjo$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE cria_monstro(idBatalha UUID, nivel integer) AS $cria_monstro$
+ DECLARE 
+	vidaPorNivel integer;
+	idDigimon UUID;
+
+BEGIN
+SELECT
+	vida_por_nivel, id_digimon INTO vidaPorNivel, idDigimon
+	FROM digimon ORDER BY random LIMIT 1;
+
+INSERT INTO monstro (nivel, vida_atual, id_digimon, id_batalha)
+VALUES (nivel, vidaPorNivel * nivel, idDigimon, idBatalha);
+
+END;
+
+$cria_monstro$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE cria_chefe(
+	idBatalha UUID,
+	nivel integer,
+	defesa_extra_chefe integer DEFAULT 0,
+	ataque_extra_chefe integer DEFAULT 0,
+	vida_extra_chefe integer DEFAULT 0,
+	velocidade_extra_chefe integer DEFAULT 0
+) AS $cria_chefe$ DECLARE vidaPorNivel integer;
+
+idDigimon UUID;
+
+idMOnstro UUID;
+
+BEGIN
+	
+SELECT vida_por_nivel, id_digimon INTO vidaPorNivel, idDigimon
+	FROM digimon ORDER BY random() LIMIT 1;
+
+INSERT INTO
+	monstro (nivel, vida_atual, id_digimon, id_batalha)
+VALUES
+	(
+		nivel,
+		vidaPorNivel * nivel + vida_extra_chefe,
+		idDigimon,
+		idBatalha
+	) returning id_monstro INTO idMonstro;
+
+INSERT INTO
+	chefe (
+		id_monstro,
+		defesa_extra,
+		ataque_extra,
+		vida_extra,
+		velocidade_extra
+	)
+VALUES
+	(
+		idMonstro,
+		defesa_extra_chefe,
+		ataque_extra_chefe,
+		vida_extra_chefe,
+		velocidade_extra_chefe
+	);
+
+END;
+
+$cria_chefe$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE PROCEDURE cria_batalha(
+	idInstanciaDigimon text,
+	defesa_extra_chefe integer DEFAULT 0,
+	ataque_extra_chefe integer DEFAULT 0,
+	vida_extra_chefe integer DEFAULT 0,
+	velocidade_extra_chefe integer DEFAULT 0
+) AS $cria_batalha$ 
+
+DECLARE idBatalha UUID;
+
+	nivelInstanciaDigimon integer;
+
+BEGIN
+	
+SELECT nivel INTO nivelInstanciaDigimon
+FROM instancia_digimon WHERE id_instancia_digimon::text = idInstanciaDigimon;
+
+IF nivelInstanciaDigimon IS NULL THEN raise 'instancia do digimon não encontrada';
+
+ELSE
+
+INSERT INTO batalha (id_instancia_digimon) VALUES
+	(idInstanciaDigimon) returning id_batalha INTO idBatalha;
+
+call cria_monstro(idBatalha, nivelInstanciaDigimon);
+
+CALL cria_chefe(
+	idBatalha,
+	nivelInstanciaDigimon,
+	defesa_extra_chefe,
+	ataque_extra_chefe,
+	vida_extra_chefe,
+	velocidade_extra_chefe
+);
+
+END IF;
+
+END;
+
+$cria_batalha$ LANGUAGE plpgsql;
