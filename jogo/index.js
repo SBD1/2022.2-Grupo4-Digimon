@@ -17,11 +17,11 @@ async function movimentacao(jogadorAtualziado) {
   console.log("2. Interagir com NPC")
   console.log("3. Finalizar jogo");
 
-  const opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
+  let opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
   // console.log(opcao);
 
   if (opcao === '2') {
-    // tem que criar a interacao com o npc
+    await npc.interagirNPC(resNpc);
   }
 
   if (opcao === '3') {

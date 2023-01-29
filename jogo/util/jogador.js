@@ -69,7 +69,7 @@ async function movimentaJogador(resRegiao, jogadorCriado) {
     //aumentando ou diminuindo em 1 o eixo_x ou eixo_uy
     let regiaoDestino;
     let idRegiao = [0, 0, 0, 0];
-    console.log("A partir dessa regiao voce pode ir para esses lugares: \n");
+    console.log(`A partir da regiao ${resRegiao.nome} voce pode ir para esses lugares: \n`);
     if (esquerda(posicao_x)) {
         regiaoDestino = await db.query(
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x - 1
