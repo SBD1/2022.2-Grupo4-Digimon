@@ -290,21 +290,17 @@ CREATE TABLE "curandeiro" (
 );
 
 CREATE TABLE "guia" (
-	"id_guia" UUID NOT NULL DEFAULT uuid_generate_v4(),
   "id_npc" UUID NOT NULL,
   
-  CONSTRAINT "guia_pkey" PRIMARY KEY ("id_guia"),
   CONSTRAINT "guia_npc_fkey" FOREIGN KEY ("id_npc") REFERENCES "npc"("id_npc")
 );
 
 create type "tipo_mercador" as ENUM ('comerciante de armas', 'vendedor de frutas');
 
 CREATE TABLE "mercador" (
-  "id_mercador" UUID NOT NULL DEFAULT uuid_generate_v4(),
   "tipo" tipo_mercador not null,
   "id_npc" UUID NOT NULL,
   
-  CONSTRAINT "mercador_pkey" PRIMARY KEY ("id_mercador"),
   CONSTRAINT "mercador_npc_fkey" FOREIGN KEY ("id_npc") REFERENCES "npc"("id_npc")
 );
 
@@ -312,10 +308,10 @@ CREATE TABLE "missao" (
     "id_missao" UUID NOT NULL DEFAULT uuid_generate_v4(),
     "nome" varchar(20) NOT NULL,
     "experiencia" integer DEFAULT 0,
-  	"id_guia" UUID NOT NULL,
+  	"id_npc" UUID NOT NULL,
 
     CONSTRAINT "missao_pkey" PRIMARY KEY ("id_missao"),
-    CONSTRAINT "missao_npc_guia_fkey" FOREIGN KEY ("id_guia") REFERENCES "npc_guia"("id_guia")
+    CONSTRAINT "missao_npc_fkey" FOREIGN KEY ("id_npc") REFERENCES "npc"("id_npc")
 );
 
 CREATE TABLE "missao_jogador" (
@@ -341,12 +337,12 @@ CREATE TABLE "dialogo" (
 );
 
 CREATE TABLE "mercador_item" (
-    "id_mercador" UUID NOT NULL,
+    "id_npc" UUID NOT NULL,
     "id_item" UUID NOT NULL,
     "preco" integer DEFAULT 0,
 
     CONSTRAINT "mercador_item_pkey" PRIMARY KEY ("id_mercador", "id_item"),
-     CONSTRAINT "mercador_item_mercador_fkey" FOREIGN KEY ("id_mercador") REFERENCES "npc_mercador"("id_mercador"),
+     CONSTRAINT "mercador_item_npc_fkey" FOREIGN KEY ("id_npc") REFERENCES "npc"("id_npc"),
     CONSTRAINT "mercador_item_item_fkey" FOREIGN KEY ("id_item") REFERENCES "item"("id_item")
 );
 

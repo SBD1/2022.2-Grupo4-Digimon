@@ -478,4 +478,134 @@ END;
 
 $procedure$
 ;
-;
+
+CREATE OR REPLACE PROCEDURE cria_curandeiro(nome varchar(20), eixoX integer, eixoY integer)
+AS $cria_curandeiro$
+
+DECLARE
+    idNpc UUID;
+   	idRegiaoNpc UUID;
+begin	
+select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
+		insert into npc ("nome","id_regiao") values (nome, idRegiaoNpc) returning "id_npc" into idNpc;
+		
+		insert into curandeiro  ("id_npc")
+		values (idNpc);
+END;
+
+$cria_curandeiro$ LANGUAGE plpgsql;
+
+
+-- TRIGGERS
+
+
+CREATE OR REPLACE FUNCTION inicia_jogo() returns trigger as $inicia_jogo$
+
+DECLARE
+    idCategoriaJogador UUID;
+    idRegiaoJogador UUID;
+begin
+ if new.name is null or new.id_categoria_jogador is null then 
+  raise 'dados não informados';
+ else
+  select "id_categoria_jogador" into idCategoriaJogador from categoria_jogador where "id_categoria_jogador" = new.id_categoria_jogador;
+    select "id_regiao" into idRegiaoJogador from regiao where eixo_x  = 0 and eixo_y = 0;
+    
+    if idCategoriaJogador is null or idRegiaoJogador is null then 
+   raise 'dados não encontrados';
+  else
+   new.id_regiao := idRegiaoJogador;
+   return new;
+  end if;
+ end if;
+
+END;
+
+$inicia_jogo$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER inicia_jogo BEFORE INSERT ON jogador
+    FOR EACH ROW EXECUTE FUNCTION inicia_jogo();
+   
+CREATE OR REPLACE FUNCTION verifica_item_mercador() returns trigger as $verifica_item_mercador$
+
+declare
+
+    idMercador UUID;
+   
+begin
+	
+  select "id_npc" into idMercador from mercador where id_npc = new.id_npc;
+    
+   if idMercador is null then 
+   
+   raise 'Mercador não encontrado';
+  
+  else
+  
+   return new;
+  
+  end if;
+
+END;
+
+$verifica_item_mercador$ LANGUAGE plpgsql;
+
+CREATE TRIGGER verifica_item_mercador BEFORE INSERT ON mercador_item
+    FOR EACH ROW EXECUTE FUNCTION verifica_item_mercador();
+   
+CREATE OR REPLACE FUNCTION verifica_missao() returns trigger as $verifica_missao$
+
+declare
+
+    idGuia UUID;
+   
+begin
+	
+  select "id_npc" into idGuia from guia where id_npc = new.id_npc;
+    
+   if idGuia is null then 
+   
+   raise 'Guia não encontrado';
+  
+  else
+  
+   return new;
+  
+  end if;
+
+END;
+
+$verifica_missao$ LANGUAGE plpgsql;
+
+CREATE TRIGGER verifica_missao BEFORE INSERT ON missao
+    FOR EACH ROW EXECUTE FUNCTION verifica_missao();
+
+
+CREATE OR REPLACE FUNCTION verifica_equipamento_digimon() returns trigger as $verifica_equipamento_digimon$
+
+declare
+
+    idEquipamento UUID;
+   
+begin
+	
+  select "id_item" into idEquipamento from equipamento  where id_item = new.id_item;
+    
+   if idEquipamento is null then 
+   
+   raise 'Equipamento não encontrado';
+  
+  else
+  
+   return new;
+  
+  end if;
+
+END;
+
+$verifica_equipamento_digimon$ LANGUAGE plpgsql;
+
+CREATE TRIGGER verifica_equipamento_digimon BEFORE INSERT ON instancia_digimon_instancia_item
+    FOR EACH ROW EXECUTE FUNCTION verifica_equipamento_digimon();
+   
