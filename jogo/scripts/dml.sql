@@ -29,6 +29,29 @@ INSERT INTO public.regiao (id_regiao, nome, eixo_x, eixo_y, id_mapa) VALUES(uuid
 INSERT INTO public.regiao (id_regiao, nome, eixo_x, eixo_y, id_mapa) VALUES(uuid_generate_v4(),'Caelid',2,2,'9a3b49c8-dc1d-4c3a-a5b5-5c5e5d5f6a7b');
 INSERT INTO public.regiao (id_regiao, nome, eixo_x, eixo_y, id_mapa) VALUES(uuid_generate_v4(),'Reino do Agouro',3,2,'9a3b49c8-dc1d-4c3a-a5b5-5c5e5d5f6a7b');
 
+
+-- Digimons do Jogo
+INSERT INTO public.digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+VALUES('Angemon', 10, 20, 100, 10, '5d2c3956-9d72-4d81-961d-b91a8ff70ebe'); -- categoria anjo
+INSERT INTO public.digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+VALUES('Pidmon', 10, 18, 100, 8, '5d2c3956-9d72-4d81-961d-b91a8ff70ebe'); -- categoria anjo
+INSERT INTO public.digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+VALUES('Fantomon', 15, 25, 100, 15, '07414995-7626-4dcd-8bf0-663c19afaf8e'); -- categoria fantasma
+INSERT INTO public.digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+VALUES('Bakemon', 13, 23, 100, 13, '07414995-7626-4dcd-8bf0-663c19afaf8e'); -- categoria fantasma
+INSERT INTO public.digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+VALUES('Sanzomon', 17, 15, 100, 10, '98496e6d-7b98-4510-976f-1a0297c5cab6'); -- categoria monge
+INSERT INTO public.digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+VALUES('Mongomon', 15, 15, 100, 8, '98496e6d-7b98-4510-976f-1a0297c5cab6'); -- categoria monge
+INSERT INTO public.digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+VALUES('MegaloGrowmon', 10, 10, 100, 15, 'ddf7f726-0d66-49e9-b206-5e6cf0f549b0'); -- categoria ciborg
+INSERT INTO public.digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+VALUES('Andromon', 12, 12, 100, 12, 'ddf7f726-0d66-49e9-b206-5e6cf0f549b0'); -- categoria ciborg
+INSERT INTO public.digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+VALUES('Dracomon', 20, 20, 100, 20, '2580a9fb-e673-4ffd-b37c-e97776846a15'); -- categoria dragao
+INSERT INTO public.digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+VALUES('Peledramon', 18, 18, 100, 18, '2580a9fb-e673-4ffd-b37c-e97776846a15'); -- categoria dragao
+
 -- Utilizacao de Stored Procedures
 call cria_alimento('biscoito', 'doce', 10, 1); --(nome,descricao,preco_de_venda,experiencia,cura) cura foi omitido por que quando não é mandado o defalt é 0
 call cria_alimento('framboesa', 'fruta', 5, 1, 1);
