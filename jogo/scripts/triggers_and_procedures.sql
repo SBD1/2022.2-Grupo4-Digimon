@@ -624,3 +624,23 @@ $verifica_equipamento_digimon$ LANGUAGE plpgsql;
 CREATE TRIGGER verifica_equipamento_digimon BEFORE INSERT ON instancia_digimon_instancia_item
     FOR EACH ROW EXECUTE FUNCTION verifica_equipamento_digimon();
    
+CREATE OR REPLACE FUNCTION calcula_vida_atual() returns trigger as $calcula_vida_atual$
+
+declare 
+
+vidaPorNivel integer;
+
+begin
+	select vida_por_nivel into vidaPorNivel from digimon where id_digimon = new.id_digimon;
+
+	new.vida_atual = new.nivel * vidaPorNivel;
+
+	return new;
+
+END;
+
+$calcula_vida_atual$ LANGUAGE plpgsql;
+
+   
+CREATE TRIGGER calcula_vida_atual before INSERT ON instancia_digimon
+    FOR EACH ROW EXECUTE FUNCTION calcula_vida_atual();
