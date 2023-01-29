@@ -498,23 +498,24 @@ $cria_curandeiro$ LANGUAGE plpgsql;
 
 -- TRIGGERS
 
-
 CREATE OR REPLACE FUNCTION inicia_jogo() returns trigger as $inicia_jogo$
 
 DECLARE
     idCategoriaJogador UUID;
     idRegiaoJogador UUID;
 begin
- if new.name is null or new.id_categoria_jogador is null then 
+ if new.nome is null or new.id_categoria_jogador is null then 
   raise 'dados não informados';
  else
   select "id_categoria_jogador" into idCategoriaJogador from categoria_jogador where "id_categoria_jogador" = new.id_categoria_jogador;
     select "id_regiao" into idRegiaoJogador from regiao where eixo_x  = 0 and eixo_y = 0;
-    
+       
     if idCategoriaJogador is null or idRegiaoJogador is null then 
    raise 'dados não encontrados';
   else
-   new.id_regiao := idRegiaoJogador;
+  
+   new.id_regiao = idRegiaoJogador;
+    
    return new;
   end if;
  end if;
