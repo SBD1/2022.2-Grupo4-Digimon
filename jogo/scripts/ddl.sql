@@ -42,7 +42,7 @@ CREATE TABLE "categoria_jogador" (
 
 CREATE TABLE "jogador" (
     "id_jogador" UUID NOT NULL DEFAULT uuid_generate_v4(),
-    "nome" varchar(20) NOT NULL,
+    "nome" varchar(20) UNIQUE NOT NULL,
     "vitorias" integer DEFAULT 0,
   "derrotas" integer DEFAULT 0,
   "dinheiro" integer DEFAULT 0,
@@ -50,6 +50,7 @@ CREATE TABLE "jogador" (
   "id_regiao" UUID NOT NULL,
   
     CONSTRAINT "jogador_pkey" PRIMARY KEY ("id_jogador"),
+    CONSTRAINT "jogador_nome_ukey" UNIQUE KEY ("nome"),
   	CONSTRAINT "jogador_regiao_fkey" FOREIGN KEY ("id_regiao") REFERENCES "regiao"("id_regiao"),
     CONSTRAINT "jogador_categoria_jogador_fkey" FOREIGN KEY ("id_categoria_jogador") REFERENCES "categoria_jogador"("id_categoria_jogador")
 );

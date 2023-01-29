@@ -527,6 +527,20 @@ $inicia_jogo$ LANGUAGE plpgsql;
 
 CREATE TRIGGER inicia_jogo BEFORE INSERT ON jogador
     FOR EACH ROW EXECUTE FUNCTION inicia_jogo();
+
+CREATE OR REPLACE FUNCTION cria_digivice() returns trigger as $cria_digivice$
+begin
+	insert into digivice (id_jogador) values (new.id_jogador);
+
+	return new;
+
+END;
+
+$cria_digivice$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER cria_digivice after INSERT ON jogador
+    FOR EACH ROW EXECUTE FUNCTION cria_digivice();
    
 CREATE OR REPLACE FUNCTION verifica_item_mercador() returns trigger as $verifica_item_mercador$
 
