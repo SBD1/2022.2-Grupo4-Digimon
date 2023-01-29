@@ -331,9 +331,11 @@ CREATE TABLE "dialogo" (
     "texto" varchar(255) NOT NULL,
     "id_missao" UUID,
     "id_jogador" UUID,
+    "id_npc" UUID,
 
     CONSTRAINT "dialogo_pkey" PRIMARY KEY ("id_dialogo"),
     CONSTRAINT "dialogo_missao_fkey" FOREIGN KEY ("id_missao") REFERENCES "missao"("id_missao"),
+    CONSTRAINT "dialogo_npc_fkey" FOREIGN KEY ("id_npc") REFERENCES "npc"("id_npc"),
     CONSTRAINT "dialogo_jogador_fkey" FOREIGN KEY ("id_jogador") REFERENCES "jogador"("id_jogador")
 );
 
