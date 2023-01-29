@@ -2,27 +2,39 @@ var prompt = require("prompt-sync")();
 const db = require("./util/db");
 
 const jogador = require("./util/jogador");
+const regiao = require("./util/regiao");
+const npc = require("./util/npc");
 
 async function movimentacao(jogadorAtualziado) {
+  const resRegiao = await regiao.getRegiao(jogadorAtualziado); // seleciona a regiao atual do jogador
+  console.log(`Voce esta na regiao: ${resRegiao.nome}`);
+  
+  const resNpc = await npc.getNPCRegiao(resRegiao);
+  console.log(`Por aqui temos o NPC: ${resNpc.nome}`);
   // Menu
   console.log("\nSelecione uma opcao:");
   console.log("1. Mover jogador");
-  console.log("2. Finalizar jogo");
+  console.log("2. Interagir com NPC")
+  console.log("3. Finalizar jogo");
 
   const opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
-  console.log(opcao);
+  // console.log(opcao);
 
   if (opcao === '2') {
+    // tem que criar a interacao com o npc
+  }
+
+  if (opcao === '3') {
     process.exit();
   } 
 
-  const resRegiao = await jogador.getRegiao(jogadorAtualziado); // seleciona a regiao atual do jogador
   await movimentacao(await jogador.movimentaJogador(resRegiao, jogadorAtualziado));
 }
 
 async function jogar() {
   const jogadorCriado = await jogador.selecionarJogador(); // cria/recupera jogador
-  const resRegiao = await jogador.getRegiao(jogadorCriado); // seleciona a regiao atual do jogador
+  const resRegiao = await regiao.getRegiao(jogadorCriado); // seleciona a regiao atual do jogador
+  console.log(`Voce esta na regiao: ${resRegiao.nome}`);
   const jogadorAtualziado = await jogador.movimentaJogador(resRegiao, jogadorCriado); // moviamenta jogador
   movimentacao(jogadorAtualziado);
 }

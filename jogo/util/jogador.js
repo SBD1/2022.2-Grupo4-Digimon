@@ -1,8 +1,6 @@
 var prompt = require("prompt-sync")();
 const db = require("./db");
 
-const digivice = require("./digivice");
-
 async function selecionarJogador() {
     console.clear();
 
@@ -15,8 +13,6 @@ async function selecionarJogador() {
     }
 
     const jogadorCriado = await criarJogador(nomeJogador);
-
-    const digiviceCriada = await digivice.criaDigivice(jogadorCriado.id_jogador);
 
     return jogadorCriado;
 }
@@ -40,10 +36,10 @@ async function criarJogador(nomeJogador) {
         const id_categoria_jogador = resCategoriaJogador.rows[categoriaJogador - 1].id_categoria_jogador;
 
         const jogadorCriado = await db.query(
-            `INSERT INTO jogador(nome, id_categoria_jogador,id_regiao) 
-            VALUES('${nomeJogador}', '${id_categoria_jogador}', '738ccbc9-9f13-4f71-90c5-10383ff4e9dc') RETURNING *`
+            `INSERT INTO jogador(nome, id_categoria_jogador) 
+            VALUES('${nomeJogador}', '${id_categoria_jogador}') RETURNING *`
         )
-        console.log("jogador criado com sucesso");
+        console.log("jogador e digivice criado com sucesso");
         return jogadorCriado.rows[0];
 
     } catch (err) {
@@ -65,19 +61,9 @@ async function getJogador(nomeJogador) {
     }
 }
 
-async function getRegiao(jogadorCriado) {
-    const resRegiao = await db.query(
-        `SELECT * FROM regiao where id_regiao = '${jogadorCriado.id_regiao}'`
-    );
-    //posicções que o jogador se encontra
-
-    console.log(`${jogadorCriado.nome} esta na regiao ${resRegiao.rows[0].nome}`);
-    return resRegiao;
-}
-
 async function movimentaJogador(resRegiao, jogadorCriado) {
-    let posicao_x = resRegiao.rows[0].eixo_x;
-    let posicao_y = resRegiao.rows[0].eixo_y;
+    let posicao_x = resRegiao.eixo_x;
+    let posicao_y = resRegiao.eixo_y;
 
     //sabendo para quais lados o jogador pode ir, fazer uma query de select no banco para trazer as regioes as quais ele pode ir
     //aumentando ou diminuindo em 1 o eixo_x ou eixo_uy
@@ -118,15 +104,19 @@ async function movimentaJogador(resRegiao, jogadorCriado) {
     }
     regiaoDestino = Number(prompt("Escolha o numero da sua regiao destino: "));
 
-    console.log(idRegiao[regiaoDestino - 1]);
     const jogadorAtualizado = await atualizaReagioJogador(idRegiao[regiaoDestino - 1], jogadorCriado);
     console.clear();
-    // getRegiao(jogadorAtualizado.rows[0]);
-    return jogadorAtualizado.rows[0];
+    return jogadorAtualizado;
 }
 
 async function atualizaReagioJogador(idRegiao, jogadorCriado) {
-    return await db.query(`UPDATE jogador SET id_regiao = '${idRegiao}' WHERE id_jogador = '${jogadorCriado.id_jogador}' RETURNING *`);
+    try {
+        const jogadorAtualizado = await db.query(`UPDATE jogador SET id_regiao = '${idRegiao}' WHERE id_jogador = '${jogadorCriado.id_jogador}' RETURNING *`);
+        return jogadorAtualizado.rows[0];
+    } catch (error) {
+        console.error(error)
+        return null;
+    }
 }
 
 function direita(posicao_x) {
@@ -154,4 +144,4 @@ function baixo(posicao_y) {
     return false;
 }
 
-module.exports = { selecionarJogador, movimentaJogador, getRegiao };
+module.exports = { selecionarJogador, movimentaJogador };

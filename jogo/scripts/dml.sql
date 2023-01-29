@@ -45,8 +45,14 @@ call cria_dragao(7, 7, 7, 7); -- atributos de defesa, ataque, vida, velocidae. t
 call cria_fantasma(12); -- atributo de ataque por nivel.
 
 call cria_guia('Mestre antigo', 0, 0);
-call cria_habitante('kleber',3,2);
-call cria_habitante('velho de caelid',3,2);
-call cria_mercador ('Kleber do fuzil', 0,0, 'comerciante de armas'::tipo_mercador);
-
-
+call cria_habitante('Kleber', 1, 0);
+call cria_habitante('Steve', 2, 0);
+call cria_mercador ('Hanna', 3, 0, 'vendedor de frutas'::tipo_mercador);
+call cria_curandeiro('Sage', 0, 1);
+call cria_guia('Omen', 1, 1);
+call cria_curandeiro('Jesse', 2, 1);
+call cria_habitante('Hank', 3, 1);
+call cria_mercador ('Heisenberg', 0, 2, 'comerciante de armas'::tipo_mercador);
+call cria_curandeiro('Eleven', 1, 2);
+call cria_habitante('Velho de Caelid', 2, 2);
+call cria_guia('Bill Gates', 3, 2);
