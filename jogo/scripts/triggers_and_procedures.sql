@@ -1,3 +1,29 @@
+create OR REPLACE PROCEDURE cria_mapa()
+as $cria_mapa$
+
+DECLARE
+    idMapa UUID;
+
+begin	
+	INSERT INTO mapa(altura, largura, descricao)
+	VALUES (3, 4, 'Mapa digimon com 12 regioes para explorar!') returning id_mapa into idMapa;
+	
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Capitulo perdido',0,0,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Terras Esquecidas',1,0,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Floresta Ecantada',2,0,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Floresta Digital',3,0,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Montanha das Trevas',0,1,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Terra dos Dragões',1,1,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Árvore da Vida',2,1,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Lago dos Sonhos',3,1,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Cidade dos Anjos',0,2,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Terras intermedias',1,2,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Caelid',2,2,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Reino do Agouro',3,2,idMapa);
+END;
+
+$cria_mapa$ LANGUAGE plpgsql;
+
 create OR REPLACE PROCEDURE cria_equipamento(
 	nome varchar(20), 
 	descricao varchar(255),
@@ -12,8 +38,8 @@ as $cria_equipamento$
 DECLARE
     idItem UUID;
 begin
-		insert into item ("nome", "descricao", "preco_de_venda")
-		values (nome, descricao, preco_de_venda) returning "id_item" into idItem;
+		insert into item ("nome", "descricao", "preco_de_venda", "tipo")
+		values (nome, descricao, preco_de_venda, 'equipamento') returning "id_item" into idItem;
 		
 		insert into equipamento ("defesa_extra", "ataque_extra", "vida_extra", "velocidade_extra", "id_item")
 		values (defesa_extra,ataque_extra,vida_extra,velocidade_extra, idItem);
@@ -25,7 +51,7 @@ create OR REPLACE PROCEDURE cria_alimento(
 	nome varchar(20), 
 	descricao varchar(255),
 	preco_de_venda integer DEFAULT 0, 
-	experiencia integer DEFAULT 0, 
+	nivel integer DEFAULT 0, 
 	cura integer DEFAULT 0
 	)
 as $cria_alimento$
@@ -33,12 +59,12 @@ as $cria_alimento$
 DECLARE
     idItem UUID;
 begin
-		insert into item ("nome", "descricao", "preco_de_venda")
-		values (nome, descricao, preco_de_venda) returning "id_item" into idItem;
+		insert into item ("nome", "descricao", "preco_de_venda", "tipo")
+		values (nome, descricao, preco_de_venda, 'alimento') returning "id_item" into idItem;
 	
 		
-		insert into alimento ("experiencia", "cura", "id_item")
-		values (experiencia, cura, idItem);
+		insert into alimento ("nivel", "cura", "id_item")
+		values (nivel, cura, idItem);
 END;
 
 $cria_alimento$ LANGUAGE plpgsql;
@@ -56,8 +82,8 @@ DECLARE
 BEGIN
 	
 	if (SELECT tipo = any(enum_range(null::tipos_item_chave)::varchar(20)[])) then 
-			insert into item ("nome", "descricao", "preco_de_venda")
-			values (nome, descricao, preco_de_venda) returning "id_item" into idItem;
+			insert into item ("nome", "descricao", "preco_de_venda", "tipo")
+			values (nome, descricao, preco_de_venda, 'chave') returning "id_item" into idItem;
 		
 			insert into chave ("tipo", "id_item")
 			values (tipo::tipos_item_chave, idItem);
@@ -142,7 +168,7 @@ as $cria_anjo$
 DECLARE
     idCategoriaDigimon UUID;
 begin
-		insert into categoria_digimon DEFAULT VALUES returning "id_categoria_digimon" into idCategoriaDigimon;
+		insert into categoria_digimon ("tipo") VALUES ('anjo') returning "id_categoria_digimon" into idCategoriaDigimon;
 		
 		insert into anjo ("defesa_extra", "id_categoria_digimon")
 		values (defesa_extra, idCategoriaDigimon);
@@ -158,7 +184,7 @@ as $cria_fantasma$
 DECLARE
     idCategoriaDigimon UUID;
 begin
-		insert into categoria_digimon DEFAULT VALUES returning "id_categoria_digimon" into idCategoriaDigimon;
+		insert into categoria_digimon ("tipo") VALUES ('fantasma') returning "id_categoria_digimon" into idCategoriaDigimon;
 		
 		insert into fantasma ("ataque_extra", "id_categoria_digimon")
 		values (ataque_extra, idCategoriaDigimon);
@@ -174,7 +200,7 @@ as $cria_monge$
 DECLARE
     idCategoriaDigimon UUID;
 begin
-		insert into categoria_digimon DEFAULT VALUES returning "id_categoria_digimon" into idCategoriaDigimon;
+		insert into categoria_digimon ("tipo") VALUES ('monge') returning "id_categoria_digimon" into idCategoriaDigimon;
 		
 		insert into monge ("vida_extra", "id_categoria_digimon")
 		values (vida_extra, idCategoriaDigimon);
@@ -190,7 +216,7 @@ as $cria_ciborg$
 DECLARE
     idCategoriaDigimon UUID;
 begin
-		insert into categoria_digimon DEFAULT VALUES returning "id_categoria_digimon" into idCategoriaDigimon;
+		insert into categoria_digimon ("tipo") VALUES ('ciborg') returning "id_categoria_digimon" into idCategoriaDigimon;
 		
 		insert into ciborg ("velocidade_extra", "id_categoria_digimon")
 		values (velocidade_extra, idCategoriaDigimon);
@@ -209,7 +235,7 @@ as $cria_dragao$
 DECLARE
     idCategoriaDigimon UUID;
 begin
-		insert into categoria_digimon DEFAULT VALUES returning "id_categoria_digimon" into idCategoriaDigimon;
+		insert into categoria_digimon ("tipo") VALUES ('dragao') returning "id_categoria_digimon" into idCategoriaDigimon;
 		
 		insert into dragao ("velocidade_extra", "defesa_extra", "ataque_extra", "vida_extra","id_categoria_digimon")
 		values (velocidade_extra, defesa_extra, ataque_extra, vida_extra, idCategoriaDigimon);
@@ -317,18 +343,173 @@ END;
 
 $apaga_anjo$ LANGUAGE plpgsql;
 
+create OR REPLACE PROCEDURE cria_digimon(
+	nome varchar(20), 
+	ataque_por_nivel integer, 
+	defesa_por_nivel integer, 
+	vida_por_nivel integer, 
+	velocidade_por_nivel integer,
+	categoria text
+)
+as $cria_digimon$
+
+DECLARE
+    idCategoria UUID;
+
+begin	
+	
+		
+	select id_categoria_digimon into idCategoria from categoria_digimon where tipo::text = categoria;
+
+	if (idCategoria is not null) then 
+	
+	INSERT INTO digimon (nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, id_categoria_digimon)
+	VALUES(nome, ataque_por_nivel, defesa_por_nivel, vida_por_nivel, velocidade_por_nivel, idCategoria);
+	else
+		raise 'Tipo de categoria não encontrado';
+
+	end if;
+END;
+
+
+$cria_digimon$ LANGUAGE plpgsql;
+
+create OR REPLACE PROCEDURE cria_missao(
+	nomeMissao varchar(20), 
+	nivel integer, 
+	guia text
+)
+as $cria_missao$
+
+DECLARE
+    idGuia UUID;
+
+begin	
+	
+		
+	select id_npc into idGuia from npc where nome = guia;
+
+	if (idGuia is not null) then 
+	
+	INSERT INTO missao (nome, nivel, id_npc) VALUES(nomeMissao, nivel, idGuia);
+
+	else
+		raise 'Guia não encontrado';
+
+	end if;
+END;
+
+
+$cria_missao$ LANGUAGE plpgsql;
+
+create OR REPLACE PROCEDURE cria_dialogo(
+	texto varchar(255), 
+	nomeNpc text,
+	nomeMissao text default ''
+)
+as $cria_dialogo$
+
+DECLARE
+    idNpc UUID;
+   	idMissao UUID;
+
+begin	
+	
+		
+	select id_npc into idNpc from npc where nome = nomeNpc;
+
+	if (idNpc is not null) then 
+	
+	select id_missao into idMissao from missao where nome = nomeMissao;
+
+	INSERT INTO dialogo (texto, id_missao, id_npc) VALUES(texto, idMissao, idNpc);
+
+	else
+		raise 'Npc não encontrado';
+
+	end if;
+END;
+
+
+$cria_dialogo$ LANGUAGE plpgsql;
+
+create type dados_digimon as (
+	vida integer,
+	ataque integer,
+	defesa integer,
+	velocidade integer
+);
+
+CREATE OR REPLACE FUNCTION calcula_dados_digimon(nivel integer, idDigimon UUID) returns dados_digimon as $calcula_dados_digimon$
+declare
+
+digimonEncontrado record;
+dadosDigimon dados_digimon;
+
+begin
+
+select * into digimonEncontrado from digimon join categoria_digimon
+on digimon.id_categoria_digimon = categoria_digimon.id_categoria_digimon where digimon.id_digimon = idDigimon;
+
+dadosDigimon = (0,0,0,0);
+
+case 
+
+when digimonEncontrado.tipo = 'anjo' then
+
+select defesa_extra into dadosDigimon.defesa from anjo where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
+
+when digimonEncontrado.tipo = 'fantasma' then
+
+select ataque_extra into dadosDigimon.ataque from fantasma where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
+
+when digimonEncontrado.tipo = 'monge' then
+
+select vida_extra into dadosDigimon.vida from monge where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
+
+when digimonEncontrado.tipo = 'ciborg' then
+
+select velocidade_extra into dadosDigimon.velocidade from ciborg where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
+
+when digimonEncontrado.tipo = 'dragao' then
+
+select into dadosDigimon ataque_extra as ataque, defesa_extra as defesa, vida_extra as vida, velocidade_extra as velocidade
+from dragao where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
+
+end case;
+
+dadosDigimon.vida = digimonEncontrado.vida_por_nivel * nivel + dadosDigimon.vida;
+dadosDigimon.ataque = digimonEncontrado.ataque_por_nivel * nivel + dadosDigimon.ataque;
+dadosDigimon.defesa = digimonEncontrado.defesa_por_nivel * nivel + dadosDigimon.defesa;
+dadosDigimon.velocidade = digimonEncontrado.velocidade_por_nivel * nivel + dadosDigimon.velocidade;
+
+return dadosDigimon;
+
+end;
+
+$calcula_dados_digimon$  LANGUAGE plpgsql;
+
 CREATE OR REPLACE PROCEDURE cria_monstro(idBatalha UUID, nivel integer) AS $cria_monstro$
  DECLARE 
-	vidaPorNivel integer;
 	idDigimon UUID;
+	dadosDigimon dados_digimon;
 
 BEGIN
-SELECT
-	vida_por_nivel, id_digimon INTO vidaPorNivel, idDigimon
-	FROM digimon ORDER BY random LIMIT 1;
+SELECT id_digimon INTO idDigimon FROM digimon ORDER BY random LIMIT 1;
 
-INSERT INTO monstro (nivel, vida_atual, id_digimon, id_batalha)
-VALUES (nivel, vidaPorNivel * nivel, idDigimon, idBatalha);
+select calcula_dados_digimon(nivel, idDigimon) into dadosDigimon;
+
+INSERT INTO monstro (nivel, vida_atual, id_digimon, id_batalha, vida, ataque, defesa, velocidade)
+VALUES (
+	nivel, 
+	dadosDigimon.vida, 
+	idDigimon, 
+	idBatalha, 
+	dadosDigimon.vida, 
+	dadosDigimon.ataque, 
+	dadosDigimon.defesa, 
+	dadosDigimon.velocidade
+	);
 
 END;
 
@@ -341,25 +522,28 @@ CREATE OR REPLACE PROCEDURE cria_chefe(
 	ataque_extra_chefe integer DEFAULT 0,
 	vida_extra_chefe integer DEFAULT 0,
 	velocidade_extra_chefe integer DEFAULT 0
-) AS $cria_chefe$ DECLARE vidaPorNivel integer;
+) AS $cria_chefe$ 
 
-idDigimon UUID;
-
-idMOnstro UUID;
+ DECLARE 
+	idDigimon UUID;
+	dadosDigimon dados_digimon;
+	idMonstro UUID;
 
 BEGIN
-	
-SELECT vida_por_nivel, id_digimon INTO vidaPorNivel, idDigimon
-	FROM digimon ORDER BY random() LIMIT 1;
+SELECT id_digimon INTO idDigimon FROM digimon ORDER BY random LIMIT 1;
 
 INSERT INTO
-	monstro (nivel, vida_atual, id_digimon, id_batalha)
+	monstro (nivel, vida_atual, id_digimon, id_batalha, vida, ataque, defesa, velocidade)
 VALUES
 	(
-		nivel,
-		vidaPorNivel * nivel + vida_extra_chefe,
-		idDigimon,
-		idBatalha
+	nivel, 
+	dadosDigimon.vida + vida_extra_chefe, 
+	idDigimon, 
+	idBatalha, 
+	dadosDigimon.vida + vida_extra_chefe, 
+	dadosDigimon.ataque + ataque_extra_chefe, 
+	dadosDigimon.defesa + defesa_extra_chefe, 
+	dadosDigimon.velocidade + velocidade_extra_chefe
 	) returning id_monstro INTO idMonstro;
 
 INSERT INTO
@@ -424,60 +608,56 @@ END;
 
 $cria_batalha$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE PROCEDURE public.cria_habitante(IN nome character varying, IN eixoX integer, IN eixoY integer)
- LANGUAGE plpgsql
-AS $procedure$
+CREATE OR REPLACE PROCEDURE cria_habitante(nome varchar(20), eixoX integer, eixoY integer)
+AS $cria_habitante$
 
 DECLARE
     idNpc UUID;
    	idRegiaoNpc UUID;
 begin	
-select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
-		insert into npc ("nome","id_regiao") values (nome, idRegiaoNpc) returning "id_npc" into idNpc;
+	select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
+	insert into npc ("nome","id_regiao", "tipo") values (nome, idRegiaoNpc, 'habitante') returning "id_npc" into idNpc;
 		
-		insert into habitante ("id_npc")
-		values (idNpc);
+	insert into habitante ("id_npc") values (idNpc);
 END;
 
-$procedure$
-;
+$cria_habitante$ LANGUAGE plpgsql;
 
-
-CREATE OR REPLACE PROCEDURE public.cria_guia(IN nome character varying, IN eixoX integer, IN eixoY integer)
- LANGUAGE plpgsql
-AS $procedure$
+CREATE OR REPLACE PROCEDURE cria_guia(nome varchar(20), eixoX integer, eixoY integer)
+AS $cria_guia$
 
 DECLARE
     idNpc UUID;
    	idRegiaoNpc UUID;
 begin	
-select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
-		insert into npc ("nome","id_regiao") values (nome, idRegiaoNpc) returning "id_npc" into idNpc;
+	select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
+	insert into npc ("nome","id_regiao", "tipo") values (nome, idRegiaoNpc, 'guia') returning "id_npc" into idNpc;
 		
-		insert into guia  ("id_npc")
-		values (idNpc);
+	insert into guia  ("id_npc") values (idNpc);
 END;
 
-$procedure$
-;
+$cria_guia$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE PROCEDURE public.cria_mercador(IN nome character varying, IN eixoX integer, IN eixoY integer, in tipoMercador tipo_mercador)
- LANGUAGE plpgsql
-AS $procedure$
+CREATE OR REPLACE PROCEDURE cria_mercador(nome varchar(20), eixoX integer, eixoY integer, tipoMercador text)
+AS $cria_mercador$
 
 DECLARE
     idNpc UUID;
    	idRegiaoNpc UUID;
 begin	
-select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
-		insert into npc ("nome","id_regiao") values (nome, idRegiaoNpc) returning "id_npc" into idNpc;
+
+	if (SELECT tipoMercador = any(enum_range(null::tipo_mercador)::text[])) then 
+		select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
+		insert into npc ("nome","id_regiao", "tipo") values (nome, idRegiaoNpc, 'mercador') returning "id_npc" into idNpc;
 		
-		insert into mercador  ("id_npc", "tipo")
-		values (idNpc, tipoMercador);
+		insert into mercador ("id_npc", "tipo") values (idNpc, tipoMercador::tipo_mercador);
+	else
+		raise 'Tipo de mercador não existe';
+
+	end if;
 END;
 
-$procedure$
-;
+$cria_mercador$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE PROCEDURE cria_curandeiro(nome varchar(20), eixoX integer, eixoY integer)
 AS $cria_curandeiro$
@@ -487,7 +667,7 @@ DECLARE
    	idRegiaoNpc UUID;
 begin	
 select "id_regiao" into idRegiaoNpc from regiao where "eixo_x" = eixoX and "eixo_y" = eixoY;
-		insert into npc ("nome","id_regiao") values (nome, idRegiaoNpc) returning "id_npc" into idNpc;
+		insert into npc ("nome","id_regiao", "tipo") values (nome, idRegiaoNpc, 'curandeiro') returning "id_npc" into idNpc;
 		
 		insert into curandeiro  ("id_npc")
 		values (idNpc);
@@ -629,11 +809,18 @@ CREATE OR REPLACE FUNCTION calcula_vida_atual() returns trigger as $calcula_vida
 declare 
 
 vidaPorNivel integer;
+dadosDigimon dados_digimon;
 
 begin
-	select vida_por_nivel into vidaPorNivel from digimon where id_digimon = new.id_digimon;
+	
+	select calcula_dados_digimon(new.nivel, new.id_digimon) into dadosDigimon;
+		
+	new.vida_atual = dadosDigimon.vida;
+	new.vida = dadosDigimon.vida;
+	new.defesa = dadosDigimon.defesa;
+	new.ataque = dadosDigimon.ataque;
+	new.velocidade = dadosDigimon.velocidade;
 
-	new.vida_atual = new.nivel * vidaPorNivel;
 
 	return new;
 
@@ -643,4 +830,7 @@ $calcula_vida_atual$ LANGUAGE plpgsql;
 
    
 CREATE TRIGGER calcula_vida_atual before INSERT ON instancia_digimon
+    FOR EACH ROW EXECUTE FUNCTION calcula_vida_atual();
+    
+CREATE TRIGGER calcula_vida_atual_ao_upar before update of nivel ON instancia_digimon
     FOR EACH ROW EXECUTE FUNCTION calcula_vida_atual();
