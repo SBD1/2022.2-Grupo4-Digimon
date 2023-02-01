@@ -23,26 +23,12 @@ async function getDialogoNPC(npc) {
     }
 }
 
-async function checkNPCMercador(npc) {
-    try {
-        const npcMercador = await db.query(`SELECT * FROM mercador WHERE id_npc = '${npc.id_npc}'`);
-        // console.log(npcMercador.rows[0]);
-        return npcMercador.rows[0];
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
+function mercadorNPC() {
+    console.log("CRIAR LOGICA PARA A LOJA DE ITENS");
 }
 
-async function checkNPCCurandeiro(npc) {
-    try {
-        const npcCurandeiro = await db.query(`SELECT * FROM curandeiro WHERE id_npc = '${npc.id_npc}'`);
-        // console.log(npcCurandeiro.rows[0]);
-        return npcCurandeiro.rows[0];
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
+function curandeiroNPC() {
+    console.log("CRIAR LOGICA PARA RESTAURAR A VIDA COMPLETA DO DIGIMON");
 }
 
 async function interagirNPC(npc, jogadorAtualziado) {
@@ -55,20 +41,21 @@ async function interagirNPC(npc, jogadorAtualziado) {
         // const npcMercador = await checkNPCMercador(npc);
         // const npcCurandeiro = await checkNPCCurandeiro(npc);
         
-        const missaoNpc = await missao.interageMissao(jogadorAtualziado, npc);
-
-
-        // if (npc.id_missao !== undefined) {
-        //     await missaoNpc(npc, jogadorAtualziado)
-        //     console.log("CRIAR A LOGICA DA BATALHA");
-        // } 
         
-        //  if (npcMercador !== undefined) {
-
-        //     console.log("CRIAR A LOGICA DA LOJA");
-        // } else if (npcCurandeiro !== undefined) {
-        //     console.log("CRIAR A LOGICA DE CURAR");
-        // }
+        if (npc.tipo === 'guia') {
+            console.log("CRIAR A LOGICA DA MISSAO");
+            const missaoNpc = await missao.interageMissao(jogadorAtualziado, npc);
+        } 
+        
+        else if (npc.tipo === 'mercador') {
+            console.log("CRIAR A LOGICA DA LOJA");
+            mercadorNPC();
+        } 
+        
+        else if (npc.tipo === 'curandeiro') {
+            console.log("CRIAR A LOGICA DE CURAR");
+            curandeiroNPC();
+        }
 
         // // Menu
         // console.log("\nSelecione uma opcao:");

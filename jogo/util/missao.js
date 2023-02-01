@@ -3,21 +3,20 @@ const db = require("./db");
 const menu = require('../index');
 
 async function interageMissao(jogadorAtualziado, npc) {
-    console.log("missoes disponiveis abaixo:")
-    
     const missao = await getMissao(npc);
     if (missao === null) {
         console.log("npc nao possui missoes");
-        console.clear();
+        // console.clear();
         await menu.movimentacao(jogadorAtualziado);
     }
-
-    const resMissaoJogador = await getMissaoJogador(npc, jogadorAtualziado);
+    console.log(`missao disponivel: ${missao.nome}`);
 
     //verifica se jogador ja possui essa missao
-    if (resMissaoJogador == null) {
+    const resMissaoJogador = await getMissaoJogador(missao, jogadorAtualziado);
+
+    if (resMissaoJogador === null) {
         console.log("jogador ja esta cadastrado para essa missao.");
-        console.clear();
+        // console.clear();
         await menu.movimentacao(jogadorAtualziado);
     }
 
@@ -47,9 +46,9 @@ async function getMissao(npc) {
     }
 }
 
-async function getMissaoJogador(npc, jogadorAtualziado) {
+async function getMissaoJogador(missao, jogadorAtualziado) {
     try {
-        const resMissaoJogador = await db.query(`select * from missao_jogador where id_npc = '${npc.id_npc}' and id_jogador = '${jogadorAtualziado.id_jogador}'`);
+        const resMissaoJogador = await db.query(`select * from missao_jogador where id_missao = '${missao.id_missao}' and id_jogador = '${jogadorAtualziado.id_jogador}'`);
         return resMissaoJogador.rows[0];
     } catch {
         return null;
