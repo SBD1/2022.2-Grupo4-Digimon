@@ -447,6 +447,7 @@ digimonEncontrado record;
 dadosDigimon dados_digimon;
 
 begin
+	
 
 select * into digimonEncontrado from digimon join categoria_digimon
 on digimon.id_categoria_digimon = categoria_digimon.id_categoria_digimon where digimon.id_digimon = idDigimon;
@@ -461,20 +462,20 @@ select defesa_extra into dadosDigimon.defesa from anjo where id_categoria_digimo
 
 when digimonEncontrado.tipo = 'fantasma' then
 
-select ataque_extra into dadosDigimon.ataque from fantasma where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
+	select ataque_extra into dadosDigimon.ataque from fantasma where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
 
 when digimonEncontrado.tipo = 'monge' then
 
-select vida_extra into dadosDigimon.vida from monge where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
+	select vida_extra into dadosDigimon.vida from monge where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
 
 when digimonEncontrado.tipo = 'ciborg' then
 
-select velocidade_extra into dadosDigimon.velocidade from ciborg where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
+	select velocidade_extra into dadosDigimon.velocidade from ciborg where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
 
 when digimonEncontrado.tipo = 'dragao' then
 
-select into dadosDigimon ataque_extra as ataque, defesa_extra as defesa, vida_extra as vida, velocidade_extra as velocidade
-from dragao where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
+	select into dadosDigimon ataque_extra as ataque, defesa_extra as defesa, vida_extra as vida, velocidade_extra as velocidade
+	from dragao where id_categoria_digimon = digimonEncontrado.id_categoria_digimon;
 
 end case;
 
@@ -495,9 +496,9 @@ CREATE OR REPLACE PROCEDURE cria_monstro(idBatalha UUID, nivel integer) AS $cria
 	dadosDigimon dados_digimon;
 
 BEGIN
-SELECT id_digimon INTO idDigimon FROM digimon ORDER BY random LIMIT 1;
+SELECT id_digimon INTO idDigimon FROM digimon ORDER BY random() LIMIT 1;
 
-select calcula_dados_digimon(nivel, idDigimon) into dadosDigimon;
+select * from calcula_dados_digimon(nivel, idDigimon) into dadosDigimon;
 
 INSERT INTO monstro (nivel, vida_atual, id_digimon, id_batalha, vida, ataque, defesa, velocidade)
 VALUES (
@@ -530,7 +531,9 @@ CREATE OR REPLACE PROCEDURE cria_chefe(
 	idMonstro UUID;
 
 BEGIN
-SELECT id_digimon INTO idDigimon FROM digimon ORDER BY random LIMIT 1;
+SELECT id_digimon INTO idDigimon FROM digimon ORDER BY random() LIMIT 1;
+
+select * from calcula_dados_digimon(nivel, idDigimon) into dadosDigimon;
 
 INSERT INTO
 	monstro (nivel, vida_atual, id_digimon, id_batalha, vida, ataque, defesa, velocidade)
@@ -568,7 +571,7 @@ END;
 $cria_chefe$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE PROCEDURE cria_batalha(
-	idInstanciaDigimon text,
+	idInstanciaDigimon UUID,
 	defesa_extra_chefe integer DEFAULT 0,
 	ataque_extra_chefe integer DEFAULT 0,
 	vida_extra_chefe integer DEFAULT 0,
@@ -582,7 +585,7 @@ DECLARE idBatalha UUID;
 BEGIN
 	
 SELECT nivel INTO nivelInstanciaDigimon
-FROM instancia_digimon WHERE id_instancia_digimon::text = idInstanciaDigimon;
+FROM instancia_digimon WHERE id_instancia_digimon = idInstanciaDigimon;
 
 IF nivelInstanciaDigimon IS NULL THEN raise 'instancia do digimon não encontrada';
 
@@ -591,11 +594,11 @@ ELSE
 INSERT INTO batalha (id_instancia_digimon) VALUES
 	(idInstanciaDigimon) returning id_batalha INTO idBatalha;
 
-call cria_monstro(idBatalha, nivelInstanciaDigimon);
+call cria_monstro(idBatalha, nivelInstanciaDigimon - 3);
 
 CALL cria_chefe(
 	idBatalha,
-	nivelInstanciaDigimon,
+	nivelInstanciaDigimon - 3,
 	defesa_extra_chefe,
 	ataque_extra_chefe,
 	vida_extra_chefe,
@@ -808,19 +811,17 @@ CREATE OR REPLACE FUNCTION calcula_vida_atual() returns trigger as $calcula_vida
 
 declare 
 
-vidaPorNivel integer;
 dadosDigimon dados_digimon;
 
 begin
-	
-	select calcula_dados_digimon(new.nivel, new.id_digimon) into dadosDigimon;
-		
+
+	select * from calcula_dados_digimon(new.nivel, new.id_digimon) into dadosDigimon;		
+
 	new.vida_atual = dadosDigimon.vida;
 	new.vida = dadosDigimon.vida;
 	new.defesa = dadosDigimon.defesa;
 	new.ataque = dadosDigimon.ataque;
 	new.velocidade = dadosDigimon.velocidade;
-
 
 	return new;
 
@@ -834,3 +835,109 @@ CREATE TRIGGER calcula_vida_atual before INSERT ON instancia_digimon
     
 CREATE TRIGGER calcula_vida_atual_ao_upar before update of nivel ON instancia_digimon
     FOR EACH ROW EXECUTE FUNCTION calcula_vida_atual();
+    
+CREATE OR REPLACE FUNCTION verifica_missao_jogador() returns trigger as $verifica_missao_jogador$
+
+begin
+
+	if (select count(*) from missao_jogador 
+	where id_jogador = new.id_jogador and concluida = false) then 
+
+		raise 'Já existe uma missão em andamento';
+	
+	else
+		return new;	
+	
+	end if;
+
+END;
+
+$verifica_missao_jogador$ LANGUAGE plpgsql;
+
+   
+CREATE TRIGGER verifica_missao_jogador before insert ON missao_jogador
+    FOR EACH ROW EXECUTE FUNCTION verifica_missao_jogador();
+
+
+
+CREATE OR REPLACE FUNCTION verifica_instancia_item() returns trigger as $verifica_instancia_item$
+
+declare 
+
+	instanciaEncontrada UUID;
+
+begin
+
+	select id_instancia_item into instanciaEncontrada from instancia_item 
+	where id_item = new.id_item and id_digivice = new.id_digivice;
+
+	if instanciaEncontrada is not null then 
+
+		update instancia_item set quantidade = quantidade + new.quantidade where id_instancia_item = instanciaEncontrada;
+	
+		return null;
+	
+	else
+		return new;	
+	
+	end if;
+
+END;
+
+$verifica_instancia_item$ LANGUAGE plpgsql;
+
+   
+CREATE TRIGGER verifica_instancia_item before insert ON instancia_item
+    FOR EACH ROW EXECUTE FUNCTION verifica_instancia_item();
+    
+CREATE OR REPLACE FUNCTION termina_batalha() returns trigger as $termina_batalha$
+
+declare 
+
+	vidaDigimon integer;
+	idDigivice UUID;
+	idJogador UUID;
+	idMissao UUID;
+
+begin
+	select vida_atual, id_digivice into vidaDigimon, idDigivice from instancia_digimon 
+	where instancia_digimon.id_instancia_digimon = old.id_instancia_digimon;		
+
+	if vidaDigimon > 0 then
+	
+		update jogador set vitorias = vitorias + 1 where id_jogador = (
+		select id_jogador from digivice where id_digivice = idDigivice) returning id_jogador into idJogador;
+		
+		select id_missao into idMissao from missao_jogador where concluida = false and id_jogador = idJogador;
+	
+		if idMissao is not null then
+		
+			update instancia_digimon set nivel = nivel + (select nivel from missao where id_missao = idMissao)
+			where id_instancia_digimon = old.id_instancia_digimon;
+		
+			insert into instancia_item (id_digivice, id_item) (
+			select idDigivice as id_digivice ,id_item from missao_item where id_missao = idMissao
+			);
+					
+			update missao_jogador set concluida = true where id_missao = idMissao and id_jogador = idJogador;
+
+		end if;
+	else
+	
+		update jogador set derrotas = derrotas + 1 where id_jogador = (
+		select id_jogador from digivice where id_digivice = idDigivice);
+
+	end if;
+
+	delete from chefe using monstro where chefe.id_monstro = monstro.id_monstro and monstro.id_batalha = old.id_batalha;
+	delete from monstro where monstro.id_batalha = old.id_batalha;
+	
+	return old;
+
+END;
+
+$termina_batalha$ LANGUAGE plpgsql;
+
+   
+CREATE TRIGGER termina_batalha before DELETE ON batalha
+    FOR EACH ROW EXECUTE FUNCTION termina_batalha();

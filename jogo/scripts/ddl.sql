@@ -266,15 +266,6 @@ CREATE TABLE "chefe" (
 
 alter table chefe add CONSTRAINT "chefe_monstro_fkey" FOREIGN KEY ("id_monstro") REFERENCES "monstro"("id_monstro");
 
-CREATE TABLE "item_batalha" (
-    "id_item" UUID NOT NULL,
-    "id_batalha" UUID NOT NULL
-);
-
-alter table item_batalha add CONSTRAINT "item_batalha_pkey" PRIMARY KEY ("id_batalha", "id_item");
-alter table item_batalha add CONSTRAINT "item_batalha_batalha_fkey" FOREIGN KEY ("id_batalha") REFERENCES "batalha"("id_batalha");
-alter table item_batalha add CONSTRAINT "item_batalha_item_fkey" FOREIGN KEY ("id_item") REFERENCES "item"("id_item");
-
 CREATE TABLE "instancia_digimon_instancia_item" (
     "id_instancia_digimon" UUID NOT NULL,
     "id_instancia_item" UUID NOT NULL
@@ -338,7 +329,7 @@ alter table missao add CONSTRAINT "missao_npc_fkey" FOREIGN KEY ("id_npc") REFER
 CREATE TABLE "missao_jogador" (
     "id_missao" UUID NOT NULL,
     "id_jogador" UUID NOT NULL,
-    "concluida" BOOL NOT NULL
+    "concluida" BOOL default false
 );
 
 alter table missao_jogador add CONSTRAINT "missao_jogador_pkey" PRIMARY KEY ("id_missao", "id_jogador");
@@ -365,4 +356,13 @@ CREATE TABLE "mercador_item" (
 alter table mercador_item add CONSTRAINT "mercador_item_pkey" PRIMARY KEY ("id_npc", "id_item");
 alter table mercador_item add CONSTRAINT "mercador_item_npc_fkey" FOREIGN KEY ("id_npc") REFERENCES "npc"("id_npc");
 alter table mercador_item add CONSTRAINT "mercador_item_item_fkey" FOREIGN KEY ("id_item") REFERENCES "item"("id_item");
+
+CREATE TABLE "missao_item" (
+    "id_missao" UUID NOT NULL,
+    "id_item" UUID NOT NULL
+);
+
+alter table missao_item add CONSTRAINT "missao_item_pkey" PRIMARY KEY ("id_missao", "id_item");
+alter table missao_item add CONSTRAINT "missao_item_missao_fkey" FOREIGN KEY ("id_missao") REFERENCES "missao"("id_missao");
+alter table missao_item add CONSTRAINT "missao_item_item_fkey" FOREIGN KEY ("id_item") REFERENCES "item"("id_item");
 
