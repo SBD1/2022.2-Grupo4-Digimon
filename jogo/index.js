@@ -21,7 +21,7 @@ async function movimentacao(jogadorAtualziado) {
   // console.log(opcao);
 
   if (opcao === '2') {
-    await npc.interagirNPC(resNpc);
+    await npc.interagirNPC(resNpc, jogadorAtualziado);
   }
 
   if (opcao === '3') {

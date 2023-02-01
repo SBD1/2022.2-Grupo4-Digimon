@@ -1,5 +1,6 @@
 var prompt = require("prompt-sync")();
 const db = require("./db");
+const { missaoNpc } = require("./missao");
 
 async function getNPCRegiao(regiao) {
     try {
@@ -44,19 +45,26 @@ async function checkNPCCurandeiro(npc) {
     }
 }
 
-async function interagirNPC(npc) {
+async function interagirNPC(npc,jogadorAtualziado) {
     try {
         // console.log(npc)
         // tem que criar a interacao com o npc
         const resDialogo = await getDialogoNPC(npc);
         console.log(resDialogo.texto);
-
+        
         const npcMercador = await checkNPCMercador(npc);
         const npcCurandeiro = await checkNPCCurandeiro(npc);
+        
+        const missaoNpc = await missaoNpc(npc, jogadorAtualziado);
 
-        if (npc.id_missao !== undefined) {
-            console.log("CRIAR A LOGICA DA BATALHA");
-        } else if (npcMercador !== undefined) {
+
+        // if (npc.id_missao !== undefined) {
+        //     await missaoNpc(npc, jogadorAtualziado)
+        //     console.log("CRIAR A LOGICA DA BATALHA");
+        // } 
+        
+         if (npcMercador !== undefined) {
+
             console.log("CRIAR A LOGICA DA LOJA");
         } else if (npcCurandeiro !== undefined) {
             console.log("CRIAR A LOGICA DE CURAR");
