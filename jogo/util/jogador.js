@@ -40,6 +40,13 @@ async function criarJogador(nomeJogador) {
             VALUES('${nomeJogador}', '${id_categoria_jogador}') RETURNING *`
         )
         console.log("jogador e digivice criado com sucesso");
+        //da 2 instancias de digimons para o jogador e alguns itens
+        console.log("Agora vc vai ganhar 2 digimons para explora o mundo e voltar pra casa!!")
+        const getDigimon = await db.query(`SELECT * FROM digimon d  ORDER BY RANDOM() LIMIT 2`);
+        console.log(getDigimon.rows[0])
+        console.log(getDigimon.rows[1])
+        
+
         return jogadorCriado.rows[0];
 
     } catch (err) {
@@ -90,7 +97,8 @@ async function movimentaJogador(resRegiao, jogadorCriado) {
         regiaoDestino = await db.query(
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x})  AND (eixo_y = ${posicao_y + 1
             })`
-        );
+        );        console.log(listItem)
+
         console.log("3)" + regiaoDestino.rows[0].nome);
         idRegiao[2] = regiaoDestino.rows[0].id_regiao;
     }
