@@ -4,6 +4,7 @@ const db = require("./util/db");
 const jogador = require("./util/jogador");
 const regiao = require("./util/regiao");
 const npc = require("./util/npc");
+const { acessaDigivice } = require("./util/digivice");
 
 async function movimentacao(jogadorAtualziado) {
   const resRegiao = await regiao.getRegiao(jogadorAtualziado); // seleciona a regiao atual do jogador
@@ -16,6 +17,7 @@ async function movimentacao(jogadorAtualziado) {
   console.log("1. Mover jogador");
   console.log("2. Interagir com NPC")
   console.log("3. Finalizar jogo");
+  console.log("4. Testa acessa digivce");
 
   let opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
   // console.log(opcao);
@@ -26,6 +28,9 @@ async function movimentacao(jogadorAtualziado) {
 
   if (opcao === '3') {
     process.exit();
+  }
+  if (opcao === '4') {
+    await acessaDigivice(jogadorAtualziado)
   } 
 
   await movimentacao(await jogador.movimentaJogador(resRegiao, jogadorAtualziado));
