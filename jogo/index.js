@@ -33,10 +33,10 @@ async function movimentacao(jogadorAtualziado) {
 
 async function jogar() {
   const jogadorCriado = await jogador.selecionarJogador(); // cria/recupera jogador
-  const resRegiao = await regiao.getRegiao(jogadorCriado); // seleciona a regiao atual do jogador
-  console.log(`Voce esta na regiao: ${resRegiao.nome}`);
-  const jogadorAtualziado = await jogador.movimentaJogador(resRegiao, jogadorCriado); // moviamenta jogador
-  movimentacao(jogadorAtualziado);
+  // const resRegiao = await regiao.getRegiao(jogadorCriado); // seleciona a regiao atual do jogador
+  // console.log(`Voce esta na regiao: ${resRegiao.nome}`);
+  // const jogadorAtualziado = await jogador.movimentaJogador(resRegiao, jogadorCriado); // moviamenta jogador
+  movimentacao(jogadorCriado);
 }
 
 async function conectarBanco() {
@@ -80,3 +80,5 @@ async function main() {
 }
 
 main();
+
+exports.movimentacao = movimentacao

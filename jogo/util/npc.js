@@ -1,6 +1,6 @@
 var prompt = require("prompt-sync")();
 const db = require("./db");
-const { missaoNpc } = require("./missao");
+const missao = require("./missao");
 
 async function getNPCRegiao(regiao) {
     try {
@@ -45,17 +45,17 @@ async function checkNPCCurandeiro(npc) {
     }
 }
 
-async function interagirNPC(npc,jogadorAtualziado) {
+async function interagirNPC(npc, jogadorAtualziado) {
     try {
         // console.log(npc)
         // tem que criar a interacao com o npc
         const resDialogo = await getDialogoNPC(npc);
         console.log(resDialogo.texto);
         
-        const npcMercador = await checkNPCMercador(npc);
-        const npcCurandeiro = await checkNPCCurandeiro(npc);
+        // const npcMercador = await checkNPCMercador(npc);
+        // const npcCurandeiro = await checkNPCCurandeiro(npc);
         
-        const missaoNpc = await missaoNpc(npc, jogadorAtualziado);
+        const missaoNpc = await missao.interageMissao(jogadorAtualziado, npc);
 
 
         // if (npc.id_missao !== undefined) {
@@ -63,25 +63,25 @@ async function interagirNPC(npc,jogadorAtualziado) {
         //     console.log("CRIAR A LOGICA DA BATALHA");
         // } 
         
-         if (npcMercador !== undefined) {
+        //  if (npcMercador !== undefined) {
 
-            console.log("CRIAR A LOGICA DA LOJA");
-        } else if (npcCurandeiro !== undefined) {
-            console.log("CRIAR A LOGICA DE CURAR");
-        }
+        //     console.log("CRIAR A LOGICA DA LOJA");
+        // } else if (npcCurandeiro !== undefined) {
+        //     console.log("CRIAR A LOGICA DE CURAR");
+        // }
 
-        // Menu
-        console.log("\nSelecione uma opcao:");
-        console.log("1. Continuar");
-        console.log("2. Finalizar jogo");
+        // // Menu
+        // console.log("\nSelecione uma opcao:");
+        // console.log("1. Continuar");
+        // console.log("2. Finalizar jogo");
 
-        const opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
+        // const opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
 
-        if (opcao === '2') {
-            process.exit();
-        }
+        // if (opcao === '2') {
+        //     process.exit();
+        // }
 
-        console.clear();
+        // console.clear();
     } catch (error) {
         console.error(error);
     }
