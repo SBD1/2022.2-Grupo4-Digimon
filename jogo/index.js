@@ -17,7 +17,7 @@ async function movimentacao(jogadorAtualziado) {
   console.log("1. Mover jogador");
   console.log("2. Interagir com NPC")
   console.log("3. Finalizar jogo");
-  console.log("4. Testa acessa digivce");
+  console.log("4. Acessa digivce");
 
   let opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
   // console.log(opcao);
@@ -29,6 +29,7 @@ async function movimentacao(jogadorAtualziado) {
   if (opcao === '3') {
     process.exit();
   }
+  
   if (opcao === '4') {
     await acessaDigivice(jogadorAtualziado)
   } 

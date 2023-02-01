@@ -5,10 +5,11 @@ async function acessaDigivice(jogadorAtualziado){
         //acessa a id_digivice para acessar as instancias de digimon e item para cada jogador
         const resDigivice = await getDigivice(jogadorAtualziado);
         const listDigimom = await getInstanciaDigimon(resDigivice);
-        const listItem = await getInstanciaItem(resDigivice);
+        const resInstItem = await getInstanciaItem(resDigivice);
 
-        console.log(listDigimom)
-        console.log(listItem)
+        console.log(resDigivice);
+        console.log(listDigimom);
+        console.log(resInstItem);
 
     } catch (err) {
         console.error(err);
@@ -30,7 +31,7 @@ async function getDigivice(jogadorAtualziado){
 
 async function getInstanciaDigimon(digivice){
     try {
-        const resInstDigimon = await db.query(`select * from instancia_digimon where id_digivice = '${digivice.id_digivice}'`).rows[0]
+        const resInstDigimon = await db.query(`select * from instancia_digimon where id_digivice = '${digivice.id_digivice}'`);
 
         return resInstDigimon.rows[0];
 
