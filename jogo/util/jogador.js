@@ -50,7 +50,6 @@ async function criarJogador(nomeJogador) {
         //da 2 instancias de digimons para o jogador e alguns itens
         console.log("Agora vc vai ganhar 2 digimons para explora o mundo e voltar pra casa!!")
         await digimon.atribuiDigimons(resDigivice)
-        
 
         return jogadorCriado.rows[0];
 
