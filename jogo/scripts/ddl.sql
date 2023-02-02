@@ -121,10 +121,9 @@ CREATE TABLE "habilidade" (
     "id_habilidade" UUID NOT NULL DEFAULT uuid_generate_v4(),
     "nome" varchar(20) NOT NULL,
     "descricao" varchar(255) NOT NULL,
-    "tipo" tipos_habilidade unique NOT NULL
+    "tipo" tipos_habilidade NOT NULL
 );
 
-alter table habilidade add CONSTRAINT "habilidade_tipo_ukey" UNIQUE ("tipo");
 alter table habilidade add CONSTRAINT "habilidade_pkey" PRIMARY KEY ("id_habilidade");
 
 CREATE TABLE "ataque" (
@@ -365,4 +364,3 @@ CREATE TABLE "missao_item" (
 alter table missao_item add CONSTRAINT "missao_item_pkey" PRIMARY KEY ("id_missao", "id_item");
 alter table missao_item add CONSTRAINT "missao_item_missao_fkey" FOREIGN KEY ("id_missao") REFERENCES "missao"("id_missao");
 alter table missao_item add CONSTRAINT "missao_item_item_fkey" FOREIGN KEY ("id_item") REFERENCES "item"("id_item");
-
