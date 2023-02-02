@@ -24,6 +24,80 @@ END;
 
 $cria_mapa$ LANGUAGE plpgsql;
 
+create OR REPLACE PROCEDURE atribui_habilidade_digimon(
+	nomeHabilidade text,
+	nomeDigimon text
+)
+as $atribui_habilidade_digimon$
+
+DECLARE
+    idHabilidade UUID;
+   	idDigimon UUID;
+
+begin	
+	
+		
+	select id_habilidade into idHabilidade from habilidade where nome = nomeHabilidade;
+
+	if idHabilidade is null then
+		raise 'Habilidade não encontrada';
+	end if;
+
+	select id_digimon into idDigimon from digimon where nome = nomeDigimon;
+
+	if idDigimon is null then
+		raise 'Digimon não encontrado';
+	end if;
+
+
+	INSERT INTO digimon_habilidade (id_digimon, id_habilidade) VALUES(idDigimon, idHabilidade);
+END;
+
+
+$atribui_habilidade_digimon$ LANGUAGE plpgsql;
+
+create OR REPLACE PROCEDURE cria_ataque(
+	nome varchar(20), 
+	descricao varchar(255),
+	dano integer
+)
+as $cria_ataque$
+
+DECLARE
+    idHabilidade UUID;
+
+begin	
+	
+	insert into habilidade (nome, descricao, tipo) values (nome, descricao, 'ataque') returning "id_habilidade" into idHabilidade;
+		
+	insert into ataque (id_habilidade,dano)
+	values (idHabilidade, dano);
+END;
+
+
+$cria_ataque$ LANGUAGE plpgsql;
+
+create OR REPLACE PROCEDURE cria_defesa(
+	nome varchar(20), 
+	descricao varchar(255),
+	defesa integer
+)
+as $cria_defesa$
+
+DECLARE
+    idHabilidade UUID;
+
+begin	
+	
+	insert into habilidade (nome, descricao, tipo) values (nome, descricao, 'defesa') returning "id_habilidade" into idHabilidade;
+		
+	insert into defesa (id_habilidade,defesa)
+	values (idHabilidade, defesa);
+END;
+
+
+$cria_defesa$ LANGUAGE plpgsql;
+
 create OR REPLACE PROCEDURE cria_equipamento(
 	nome varchar(20), 
 	descricao varchar(255),
