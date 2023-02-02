@@ -32,7 +32,7 @@ call cria_digimon('Mongomon', 15, 15, 100, 8, 'monge');
 call cria_digimon('MegaloGrowmon', 10, 10, 100, 15, 'ciborg');
 call cria_digimon('Andromon', 12, 12, 100, 12, 'ciborg');
 call cria_digimon('Dracomon', 20, 20, 100, 20, 'dragao');
-call cria_digimon('Peledramon', 18, 18, 100, 18, 'dragao');
+call cria_digimon('', 18, 18, 100, 18, 'dragao');
 
 call cria_guia('Mestre antigo', 0, 0);
 call cria_habitante('Kleber', 1, 0);
@@ -105,5 +105,53 @@ call cria_dialogo(
 	'Encontrar as chaves'
 );
 
+call cria_ataque('Bola de Fogo', 'Lança uma corrente de chama azul', 70)
+call cria_defesa('Casca Grossa', 'Ganha um fortalecimento em sua casca', 25)
+call atribui_habilidade_digimon('Bola de Fogo', Angemon)
+call atribui_habilidade_digimon('Casca Grossa', Angemon)
+
+call cria_ataque('Pequeno Chifre', 'Ataca com seu chifre em sua cabeça', 65)
+call cria_defesa('Escudo de Rocha', 'Invoca um escudo de pedras ao seu redor', 30)
+call atribui_habilidade_digimon('Pequeno Chifre', Pidmon)
+call atribui_habilidade_digimon('Escudo de Rocha', Pidmon)
+
+call cria_ataque('Ciclone Azul', 'Gira em torno de si enquanto solta um fogo azul', 60)
+call cria_defesa('Capuz da Morte', 'Usa seu capuz de defesa ultra resistente', 35)
+call atribui_habilidade_digimon('Ciclone Azul', Fantomon)
+call atribui_habilidade_digimon('Capuz da Morte', Fantomon)
+
+call cria_ataque('Jato Mágico', 'Atira um jato de agua extremamente forte', 55)
+call cria_defesa('Bandana de Mercúrio', 'Remove os efetos de ataque recebidos', 40)
+call atribui_habilidade_digimon('Jato Mágico', Bakemon)
+call atribui_habilidade_digimon('Bandana de Mercúrio', Bakemon)
+
+call cria_ataque('Furação Espiral', 'Conjura o maior furação já visto contra o inímigo', 50)
+call cria_defesa('Escudo Relicário', 'bla bla bla', 45)
+call atribui_habilidade_digimon('Furação Espiral', Sanzomon)
+call atribui_habilidade_digimon('Escudo Relicário', Sanzomon)
+
+call cria_ataque('Raio Congelante', 'bla bla bla', 45)
+call cria_defesa('Coração Congelado', 'bla bla bla', 50)
+call atribui_habilidade_digimon('Raio Congelante', Mongomon)
+call atribui_habilidade_digimon('Coração Congelado', Mongomon)
+
+call cria_ataque('Choque do Trovão', 'bla bla bla', 40)
+call cria_defesa('Placa Gargolítica', 'bla bla bla', 55)
+call atribui_habilidade_digimon('Choque do Trovão', MegaloGrowmon)
+call atribui_habilidade_digimon('Placa Gargolítica', MegaloGrowmon)
+
+call cria_ataque('Erva Venenosa', 'bla bla bla', 35)
+call cria_defesa('Colheita Feliz', 'bla bla bla', 60)
+call atribui_habilidade_digimon('Erva Venenosa', Andromon)
+call atribui_habilidade_digimon('Colheita Feliz', Andromon)
+
+call cria_ataque('Tiro de Canhão', 'bla bla bla', 30)
+call cria_defesa('Armaguarda da Caçadora', 'bla bla bla', 65)
+call atribui_habilidade_digimon('Tiro de Canhão', Dracomon)
+call atribui_habilidade_digimon('Armaguarda da Caçadora', Dracomon)
 
 
+call cria_ataque('Eletro Choque', 'bla bla bla', 25)
+call cria_defesa('Máscara Abissal', 'bla bla bla', 70)
+call atribui_habilidade_digimon('Eletro Choque', Peledramon)
+call atribui_habilidade_digimon('Máscara Abissal', Peledramon)
