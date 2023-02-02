@@ -1,6 +1,10 @@
 var prompt = require("prompt-sync")();
 const db = require("./db");
+
 const menu = require('../index');
+const batalha = require('./batalha');
+const digivice = require('./digivice');
+const digimon = require('./digimon');
 
 async function interageMissao(jogadorAtualziado, npc) {
     const missao = await getMissao(npc);
@@ -29,9 +33,22 @@ async function interageMissao(jogadorAtualziado, npc) {
         try {
             // cadastra essa missao ao usuario
             await insertMissaoJogador(npc, jogadorAtualziado);
-            console.log("missao aceita com sucesso!");
-            console.log("TEMOS QUE CRIAR A BATALHA AGORA");
+            // console.log("missao aceita com sucesso!");
+            const resDigivice = await digivice.getDigivice(jogadorAtualziado);
+            const resInstDigimon = await digivice.getInstanciaDigimon(resDigivice);
+
+            let auxDigimon = 1;
+            for (const instDigimon of resInstDigimon) {
+                const resDigimon = await digimon.getDigimon(instDigimon);
+                console.log(`${auxDigimon++}. ${resDigimon.nome} - nivel: ${instDigimon.nivel} - vida: ${instDigimon.vida} 
+                - defesa: ${instDigimon.defesa} - ataque: ${instDigimon.ataque} - velocidade: ${instDigimon.velocidade}`);
+            }
+           
+            const opcao = prompt("Digite o numero do digimon para batalhar: "); // opcao digitada no terminal
+            await batalha.criaBatalha(resInstDigimon[Number(opcao) - 1]);
+
         } catch (error) {
+            console.log(error.stack)
             console.log("erro ao aceitar missao");
         }
     }

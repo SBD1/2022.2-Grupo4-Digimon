@@ -1,5 +1,16 @@
 const db = require("./db");
 
+async function getDigimon(digimon) {
+    try {
+        const getDigimons = await db.query(`SELECT * FROM digimon where id_digimon = '${digimon.id_digimon}'`);
+
+        return getDigimons.rows[0];
+    } catch (error) {
+        console.log(error)
+        return null;
+    }
+}
+
 async function getRandomDigimons() {
     try {
         const getDigimons = await db.query(`SELECT * FROM digimon d  ORDER BY RANDOM() LIMIT 2`);
@@ -30,4 +41,4 @@ async function atribuiDigimons(digivice) {
     }
 }
 
-module.exports = { atribuiDigimons }
+module.exports = { atribuiDigimons, getDigimon }
