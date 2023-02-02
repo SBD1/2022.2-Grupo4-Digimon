@@ -101,8 +101,7 @@ async function movimentaJogador(resRegiao, jogadorCriado) {
         regiaoDestino = await db.query(
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x})  AND (eixo_y = ${posicao_y + 1
             })`
-        );        console.log(listItem)
-
+        );        
         console.log("3)" + regiaoDestino.rows[0].nome);
         idRegiao[2] = regiaoDestino.rows[0].id_regiao;
     }

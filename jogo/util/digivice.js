@@ -33,7 +33,7 @@ async function getInstanciaDigimon(digivice){
     try {
         const resInstDigimon = await db.query(`select * from instancia_digimon where id_digivice = '${digivice.id_digivice}'`);
 
-        return resInstDigimon.rows[0];
+        return resInstDigimon.rows;
 
     } catch (err) {
         console.error(err);
@@ -45,7 +45,7 @@ async function getInstanciaItem(digivice){
     try {
         const resInstItem = await db.query(`select * from instancia_item where id_digivice = '${digivice.id_digivice}'`);
 
-        return resInstItem.rows[0];
+        return resInstItem.rows;
 
     } catch (err) {
         console.error(err);
@@ -54,4 +54,4 @@ async function getInstanciaItem(digivice){
 }
 
 
-module.exports = { acessaDigivice, getDigivice }
+module.exports = { acessaDigivice, getInstanciaDigimon, getDigivice }
