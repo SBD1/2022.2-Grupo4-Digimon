@@ -32,7 +32,8 @@ async function interageMissao(jogadorAtualziado, npc) {
     if (opcao == '1') {
         try {
             // cadastra essa missao ao usuario
-            await insertMissaoJogador(npc, jogadorAtualziado);
+            const resMissao = await db.query(`select * from missao where id_npc = '${npc.id_npc}'`);
+            await insertMissaoJogador(resMissao.rows[0], jogadorAtualziado);
             // console.log("missao aceita com sucesso!");
             const resDigivice = await digivice.getDigivice(jogadorAtualziado);
             const resInstDigimon = await digivice.getInstanciaDigimon(resDigivice);
@@ -43,7 +44,7 @@ async function interageMissao(jogadorAtualziado, npc) {
                 console.log(`${auxDigimon++}. ${resDigimon.nome} - nivel: ${instDigimon.nivel} - vida: ${instDigimon.vida} 
                 - defesa: ${instDigimon.defesa} - ataque: ${instDigimon.ataque} - velocidade: ${instDigimon.velocidade}`);
             }
-           
+
             const opcao = prompt("Digite o numero do digimon para batalhar: "); // opcao digitada no terminal
             await batalha.criaBatalha(resInstDigimon[Number(opcao) - 1]);
 
@@ -58,8 +59,8 @@ async function getMissao(npc) {
     try {
         const resMissao = await db.query(`select * from missao where id_npc = '${npc.id_npc}'`);
         return resMissao.rows[0];
-    } catch {
-        return null;
+    } catch (error) {
+        console.log(error.stack);
     }
 }
 
@@ -67,16 +68,16 @@ async function getMissaoJogador(missao, jogadorAtualziado) {
     try {
         const resMissaoJogador = await db.query(`select * from missao_jogador where id_missao = '${missao.id_missao}' and id_jogador = '${jogadorAtualziado.id_jogador}'`);
         return resMissaoJogador.rows[0];
-    } catch {
-        return null;
+    } catch (error) {
+        console.log(error.stack);
     }
 }
 
-async function insertMissaoJogador(npc, jogadorAtualziado) {
+async function insertMissaoJogador(missao, jogadorAtualziado) {
     try {
-        await db.query(`insert into missao_jogador(id_npc, id_jogador, concluido) values('${npc.id_npc}',''${jogadorAtualziado.id_jogador}', false`);
-    } catch {
-        return null;
+        await db.query(`insert into missao_jogador(id_missao, id_jogador, concluida) values('${missao.id_missao}', '${jogadorAtualziado.id_jogador}', false)`);
+    } catch (error) {
+        console.log(error.stack);
     }
 }
 
