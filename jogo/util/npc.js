@@ -43,7 +43,6 @@ async function interagirNPC(npc, jogadorAtualziado) {
         
         
         if (npc.tipo === 'guia') {
-            console.log("CRIAR A LOGICA DA MISSAO");
             const missaoNpc = await missao.interageMissao(jogadorAtualziado, npc);
         } 
         
