@@ -1,6 +1,8 @@
 var prompt = require("prompt-sync")();
 const db = require("./db");
 const missao = require("./missao");
+const digivice = require("./digivice");
+const digimon = require("./digimon");
 
 async function getNPCRegiao(regiao) {
     try {
@@ -23,12 +25,23 @@ async function getDialogoNPC(npc) {
     }
 }
 
-function mercadorNPC() {
+async function mercadorNPC(jogadorAtualziado, npc) {
     console.log("CRIAR LOGICA PARA A LOJA DE ITENS");
 }
 
-function curandeiroNPC() {
-    console.log("CRIAR LOGICA PARA RESTAURAR A VIDA COMPLETA DO DIGIMON");
+async function curandeiroNPC(jogadorAtualziado) {
+    const resDigivice = await digivice.getDigivice(jogadorAtualziado);
+    const resInstDigimon = await digivice.getInstanciaDigimon(resDigivice);
+
+    let auxDigimon = 1;
+    for (const instDigimon of resInstDigimon) {
+        const resDigimon = await digimon.getDigimon(instDigimon);
+        console.log(`${auxDigimon++}. ${resDigimon.nome} - vida: ${instDigimon.vida}`);
+    }
+
+    const opcao = prompt("Digite o numero do digimon que vc deseja curar: "); // opcao digitada no terminal
+
+    await digimon.curaDigimon(resDigivice, resInstDigimon[Number(opcao)]);
 }
 
 async function interagirNPC(npc, jogadorAtualziado) {
@@ -43,17 +56,19 @@ async function interagirNPC(npc, jogadorAtualziado) {
         
         
         if (npc.tipo === 'guia') {
-            const missaoNpc = await missao.interageMissao(jogadorAtualziado, npc);
+            await missao.interageMissao(jogadorAtualziado, npc);
+            console.clear();
         } 
         
         else if (npc.tipo === 'mercador') {
             console.log("CRIAR A LOGICA DA LOJA");
-            mercadorNPC();
+            await mercadorNPC(jogadorAtualziado, npc);
+            console.clear();
         } 
         
         else if (npc.tipo === 'curandeiro') {
-            console.log("CRIAR A LOGICA DE CURAR");
-            curandeiroNPC();
+            await curandeiroNPC(jogadorAtualziado);
+            console.clear();
         }
 
         // // Menu

@@ -80,7 +80,7 @@ call cria_dialogo(
 	'Libertar a princesa'
 );
 call cria_dialogo(
-	'Guerreiro, consigo recuperar 50% da sua vida, vamos nessa!', 
+	'Guerreiro, consigo recuperar 100% da sua vida, vamos nessa!', 
 	'Jesse'
 );
 call cria_dialogo(
@@ -92,7 +92,7 @@ call cria_dialogo(
 	'Heisenberg'
 );
 call cria_dialogo(
-	'Hi, vou te dar um beijinho e logo logo voce tera 70% da sua vida novamente hihihi.', 
+	'Hi, vou te dar um beijinho e logo logo voce tera 100% da sua vida novamente hihihi.', 
 	'Eleven'
 );
 call cria_dialogo(

@@ -41,4 +41,18 @@ async function atribuiDigimons(digivice) {
     }
 }
 
-module.exports = { atribuiDigimons, getDigimon }
+async function curaDigimon(digivice, digimon) {
+    try {
+
+        await db.query(`UPDATE public.instancia_digimon
+        SET vida_atual = 100 WHERE id_digivice = '${digivice.id_digivice}' AND id_digimon = '${digimon.id_digimon}';`)
+
+        console.log("Digimon curado com sucesso!");
+        
+    } catch (error) {
+        console.log(error.message);
+        console.log("Erro ao curar Digimon!");
+    }
+}
+
+module.exports = { atribuiDigimons, getDigimon, curaDigimon }
