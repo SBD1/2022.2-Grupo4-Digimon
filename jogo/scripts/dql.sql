@@ -25,6 +25,7 @@ update ${isMonster ? 'monstro' : 'instancia_digimon'} set vida_atual = vida_atua
 SELECT * FROM digimon where id_digimon = '${digimon.id_digimon}'
 SELECT * FROM digimon d  ORDER BY RANDOM() LIMIT 2
 INSERT INTO public.instancia_digimon (nivel, id_digimon, id_digivice) VALUES(5, '${digimon.id_digimon}', '${digivice.id_digivice}');
+UPDATE public.instancia_digimon SET vida_atual = 100 WHERE id_digivice = '${digivice.id_digivice}' AND id_digimon = '${digimon.id_digimon}'
 
 -- digivice
 select id_digivice from digivice where id_jogador = '${jogadorAtualziado.id_jogador}'
