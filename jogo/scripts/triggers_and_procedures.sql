@@ -963,7 +963,8 @@ $verifica_instancia_item$ LANGUAGE plpgsql;
    
 CREATE TRIGGER verifica_instancia_item before insert ON instancia_item
     FOR EACH ROW EXECUTE FUNCTION verifica_instancia_item();
-    
+
+-- FUNCTION COM TRANSACTION    
 CREATE OR REPLACE FUNCTION termina_batalha() returns trigger as $termina_batalha$
 
 declare 
@@ -974,6 +975,12 @@ declare
 	idMissao UUID;
 
 begin
+
+	-- A instrução SET TRANSACTION pode ser usada para alterar o comportamento da transação atual. 
+	-- O ISOLATION LEVEL READ COMMITTED define o nível de isolamento da transação atual para leitura confirmada, 
+	-- o que significa que quaisquer alterações de dados feitas por outras transações serão visíveis para a transação atual.
+	set transaction isolation level read committed;
+
 	select vida_atual, id_digivice into vidaDigimon, idDigivice from instancia_digimon 
 	where instancia_digimon.id_instancia_digimon = old.id_instancia_digimon;		
 
