@@ -34,14 +34,13 @@ async function interageMissao(jogadorAtualziado, npc) {
             // cadastra essa missao ao usuario
             const resMissao = await db.query(`select * from missao where id_npc = '${npc.id_npc}'`);
             await insertMissaoJogador(resMissao.rows[0], jogadorAtualziado);
-            // console.log("missao aceita com sucesso!");
             const resDigivice = await digivice.getDigivice(jogadorAtualziado);
+
             const resInstDigimon = await digivice.getInstanciaDigimon(resDigivice);
 
             let auxDigimon = 1;
             for (const instDigimon of resInstDigimon) {
-                const resDigimon = await digimon.getDigimon(instDigimon);
-                console.log(`${auxDigimon++}. ${resDigimon.nome} - nivel: ${instDigimon.nivel} - vida: ${instDigimon.vida} 
+                console.log(`${auxDigimon++}. ${instDigimon.nome} - nivel: ${instDigimon.nivel} - vida: ${instDigimon.vida} 
                 - defesa: ${instDigimon.defesa} - ataque: ${instDigimon.ataque} - velocidade: ${instDigimon.velocidade}`);
             }
 

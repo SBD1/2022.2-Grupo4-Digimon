@@ -46,14 +46,9 @@ async function curandeiroNPC(jogadorAtualziado) {
 
 async function interagirNPC(npc, jogadorAtualziado) {
     try {
-        // console.log(npc)
-        // tem que criar a interacao com o npc
+
         const resDialogo = await getDialogoNPC(npc);
         console.log(resDialogo.texto);
-        
-        // const npcMercador = await checkNPCMercador(npc);
-        // const npcCurandeiro = await checkNPCCurandeiro(npc);
-        
         
         if (npc.tipo === 'guia') {
             await missao.interageMissao(jogadorAtualziado, npc);
@@ -71,20 +66,8 @@ async function interagirNPC(npc, jogadorAtualziado) {
             console.clear();
         }
 
-        // // Menu
-        // console.log("\nSelecione uma opcao:");
-        // console.log("1. Continuar");
-        // console.log("2. Finalizar jogo");
-
-        // const opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
-
-        // if (opcao === '2') {
-        //     process.exit();
-        // }
-
-        // console.clear();
     } catch (error) {
-        console.error(error);
+        console.log(error.stack);
     }
 }
 

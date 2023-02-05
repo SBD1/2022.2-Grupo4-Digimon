@@ -3,6 +3,7 @@ var prompt = require("prompt-sync")();
 
 async function criaBatalha(instanciaDigimon) {
     try {
+        console.log(instanciaDigimon)
         await db.query(`call cria_batalha('${instanciaDigimon.id_instancia_digimon}')`);
 
         let resMonstros = await db.query(`select * from batalha join monstro
