@@ -31,7 +31,7 @@ async function getDigivice(jogadorAtualziado){
 
 async function getInstanciaDigimon(digivice){
     try {
-        const resInstDigimon = await db.query(`select * from instancia_digimon where id_digivice = '${digivice.id_digivice}'`);
+        const resInstDigimon = await db.query(`select * from view_instancia_digimon where id_digivice = '${digivice.id_digivice}'`);
 
         return resInstDigimon.rows;
 
