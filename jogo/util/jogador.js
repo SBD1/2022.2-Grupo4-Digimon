@@ -22,16 +22,18 @@ async function selecionarJogador() {
 
 async function criarJogador(nomeJogador) {
     try {
-        console.log(nomeJogador + ", escolha a categoria do seu jogador: ");
+        console.clear();
+        console.log("Olá " + nomeJogador + ", escolha a categoria do seu jogador: \n");
 
         const resCategoriaJogador = await db.query(`SELECT * FROM categoria_jogador`);
         let auxCategoria = 1;
         resCategoriaJogador.rows.map((result) => {
             console.log(
-                auxCategoria++ + ". " + result.tipo + ". Historia: " + result.historia
+                auxCategoria++ + ". " + result.tipo + ". História: " + result.historia
             );
         });
 
+        console.log("\n")
         const categoriaJogador = Number(
             prompt("Digite a categoria do seu jogador: ")
         );
@@ -48,7 +50,7 @@ async function criarJogador(nomeJogador) {
         const resDigivice = await digivice.getDigivice(jogadorCriado.rows[0]);
 
         //da 2 instancias de digimons para o jogador e alguns itens
-        console.log("Agora vc vai ganhar 2 digimons para explora o mundo e voltar pra casa!!")
+        console.log("Agora você vai ganhar 2 digimons para explora o mundo e voltar pra casa!!")
         await digimon.atribuiDigimons(resDigivice)
 
         return jogadorCriado.rows[0];
