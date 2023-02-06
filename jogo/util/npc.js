@@ -40,7 +40,7 @@ async function curandeiroNPC(jogadorAtualziado) {
 
     const opcao = prompt("Digite o numero do digimon que vc deseja curar: "); // opcao digitada no terminal
 
-    await digimon.curaDigimon(resDigivice, resInstDigimon[Number(opcao)]);
+    await digimon.curaDigimon(resDigivice, resInstDigimon[Number(opcao - 1)]);
 }
 
 async function interagirNPC(npc, jogadorAtualziado) {
@@ -53,18 +53,15 @@ async function interagirNPC(npc, jogadorAtualziado) {
         
         if (npc.tipo === 'guia') {
             await missao.interageMissao(jogadorAtualziado, npc);
-            console.clear();
         } 
         
         else if (npc.tipo === 'mercador') {
             console.log("CRIAR A LOGICA DA LOJA");
             await mercadorNPC(jogadorAtualziado, npc);
-            console.clear();
         } 
         
         else if (npc.tipo === 'curandeiro') {
             await curandeiroNPC(jogadorAtualziado);
-            console.clear();
         }
 
     } catch (error) {

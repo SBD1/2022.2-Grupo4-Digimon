@@ -5,17 +5,15 @@ async function criaBatalha(instanciaDigimon, idMissao) {
     try {
         await db.query(`call cria_batalha('${instanciaDigimon.id_instancia_digimon}', '${idMissao}')`);
 
-        let resMonstros = await db.query(`select * from batalha join monstro
-        on batalha.id_batalha = monstro.id_batalha 
-        join digimon d on d.id_digimon = monstro.id_digimon where batalha.id_instancia_digimon = '${instanciaDigimon.id_instancia_digimon}'`);
+        let resMonstros = await db.query(`select * from view_monstro where id_instancia_digimon = '${instanciaDigimon.id_instancia_digimon}'`);
 
         //logicia da batalha
         for (let monstro of resMonstros.rows) {
+            if(instanciaDigimon.vida_atual > 0) {
             console.log(`batalha com o monstro: ${monstro.nome}`);
             await batalha(instanciaDigimon, monstro);
+            }
         }
-
-        console.log("vc ganhou!")
 
         await db.query(`delete from batalha where id_batalha = '${resMonstros.rows[0].id_batalha}'`); // deleta batalha
     } catch (error) {
@@ -46,6 +44,13 @@ async function batalha(instanciaDigimon, monstro) {
                 console.log("digimon morreu");
         }
     } while (instanciaDigimon.vida_atual > 0 && monstro.vida_atual > 0);
+    if(monstro.vida_atual > 0) {
+        console.log("vc perdeu!");
+
+    } else {
+        console.log("vc ganhou!");
+    }
+
 }
 
 async function batalhaCaraBate(instanciaDigimon, monstro) {

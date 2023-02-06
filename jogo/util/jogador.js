@@ -10,6 +10,7 @@ async function selecionarJogador() {
     const nomeJogador = prompt("Digite o nome do seu jogador: ");
 
     const jogadorEncontrado = await getJogador(nomeJogador);
+    console.log(jogadorEncontrado)
     if (jogadorEncontrado !== undefined) {
         console.clear();
         console.log(`Bem vindo de volta ${nomeJogador}!!\n`);
@@ -67,7 +68,7 @@ async function criarJogador(nomeJogador) {
 async function getJogador(nomeJogador) {
     try {
         const jogadorCriado = await db.query(`SELECT * FROM jogador WHERE nome = '${nomeJogador}'`);
-
+        console.log({nomeJogador, jogadorCriado})
         return jogadorCriado.rows[0];
 
     } catch {
@@ -84,7 +85,9 @@ async function movimentaJogador(resRegiao, jogadorCriado) {
     //aumentando ou diminuindo em 1 o eixo_x ou eixo_uy
     let regiaoDestino;
     let idRegiao = [0, 0, 0, 0];
+
     console.log(`A partir da regiao ${resRegiao.nome} voce pode ir para esses lugares: \n`);
+    
     if (esquerda(posicao_x)) {
         regiaoDestino = await db.query(
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x - 1
