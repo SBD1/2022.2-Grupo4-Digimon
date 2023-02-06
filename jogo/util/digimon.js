@@ -41,10 +41,10 @@ async function atribuiDigimons(digivice) {
     }
 }
 
-async function curaDigimon(digivice, digimon) {
+async function curaDigimon(digimon) {
     try {
         await db.query(`UPDATE public.instancia_digimon
-        SET vida_atual = 100 WHERE id_digivice = '${digivice.id_digivice}' AND id_digimon = '${digimon.id_digimon}';`)
+        SET vida_atual = 100 WHERE id_instancia_digimon = '${digimon.id_instancia_digimon}';`)
 
         console.log("Digimon curado com sucesso!");
         

@@ -40,7 +40,7 @@ async function curandeiroNPC(jogadorAtualziado) {
 
     const opcao = prompt("Digite o numero do digimon que vc deseja curar: "); // opcao digitada no terminal
 
-    await digimon.curaDigimon(resDigivice, resInstDigimon[Number(opcao - 1)]);
+    await digimon.curaDigimon(resInstDigimon[Number(opcao) - 1]);
 }
 
 async function interagirNPC(npc, jogadorAtualziado) {
