@@ -11,7 +11,8 @@ async function selecionarJogador() {
 
     const jogadorEncontrado = await getJogador(nomeJogador);
     if (jogadorEncontrado !== undefined) {
-        console.log(`BEM VINDO DE VOLTA ${nomeJogador}`);
+        console.clear();
+        console.log(`Bem vindo de volta ${nomeJogador}!!\n`);
         return jogadorEncontrado;
     }
 
@@ -22,16 +23,18 @@ async function selecionarJogador() {
 
 async function criarJogador(nomeJogador) {
     try {
-        console.log(nomeJogador + ", escolha a categoria do seu jogador: ");
+        console.clear();
+        console.log("Olá " + nomeJogador + ", escolha a categoria do seu jogador: \n");
 
         const resCategoriaJogador = await db.query(`SELECT * FROM categoria_jogador`);
         let auxCategoria = 1;
         resCategoriaJogador.rows.map((result) => {
             console.log(
-                auxCategoria++ + ". " + result.tipo + ". Historia: " + result.historia
+                auxCategoria++ + ". " + result.tipo + ". História: " + result.historia
             );
         });
 
+        console.log("\n")
         const categoriaJogador = Number(
             prompt("Digite a categoria do seu jogador: ")
         );
@@ -42,13 +45,14 @@ async function criarJogador(nomeJogador) {
             `INSERT INTO jogador(nome, id_categoria_jogador) 
             VALUES('${nomeJogador}', '${id_categoria_jogador}') RETURNING *`
         )
+        console.clear();
         console.log("jogador e digivice criado com sucesso");
 
         // seleciona a digivice criada
         const resDigivice = await digivice.getDigivice(jogadorCriado.rows[0]);
 
         //da 2 instancias de digimons para o jogador e alguns itens
-        console.log("Agora vc vai ganhar 2 digimons para explora o mundo e voltar pra casa!!")
+        console.log("Agora você vai ganhar 2 digimons para explora o mundo e voltar pra casa!!")
         await digimon.atribuiDigimons(resDigivice)
 
         return jogadorCriado.rows[0];
@@ -86,7 +90,7 @@ async function movimentaJogador(resRegiao, jogadorCriado) {
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x - 1
             })  AND (eixo_y = ${posicao_y})`
         );
-        console.log("1)" + regiaoDestino.rows[0].nome);
+        console.log("1. " + regiaoDestino.rows[0].nome);
         idRegiao[0] = regiaoDestino.rows[0].id_regiao;
     }
     if (direita(posicao_x)) {
@@ -94,7 +98,7 @@ async function movimentaJogador(resRegiao, jogadorCriado) {
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x + 1
             })  AND (eixo_y = ${posicao_y})`
         );
-        console.log("2)" + regiaoDestino.rows[0].nome);
+        console.log("2. " + regiaoDestino.rows[0].nome);
         idRegiao[1] = regiaoDestino.rows[0].id_regiao;
     }
     if (cima(posicao_y)) {
@@ -102,7 +106,7 @@ async function movimentaJogador(resRegiao, jogadorCriado) {
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x})  AND (eixo_y = ${posicao_y + 1
             })`
         );        
-        console.log("3)" + regiaoDestino.rows[0].nome);
+        console.log("3. " + regiaoDestino.rows[0].nome);
         idRegiao[2] = regiaoDestino.rows[0].id_regiao;
     }
     if (baixo(posicao_y)) {
@@ -110,9 +114,10 @@ async function movimentaJogador(resRegiao, jogadorCriado) {
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x})  AND (eixo_y = ${posicao_y - 1
             })`
         );
-        console.log("4)" + regiaoDestino.rows[0].nome);
+        console.log("4. " + regiaoDestino.rows[0].nome);
         idRegiao[3] = regiaoDestino.rows[0].id_regiao;
     }
+    console.log('\n')
     regiaoDestino = Number(prompt("Escolha o numero da sua regiao destino: "));
 
     const jogadorAtualizado = await atualizaReagioJogador(idRegiao[regiaoDestino - 1], jogadorCriado);

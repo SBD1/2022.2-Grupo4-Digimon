@@ -2,5 +2,5 @@
 
 ## Diagrama
 
-![Diagrama Entidade Relacionamento](diagrama_images/diagrama_entidade_relacionamento.png "Diagrama Entidade Relacionamento")
-<center>[Figura: Diagrama Entidade Relacionamento.](diagrama_images/diagrama_entidade_relacionamento.png)</center>
+![Diagrama Entidade Relacionamento](diagrama_images/DigimonV2-DER.drawio.png "Diagrama Entidade Relacionamento")
+<center>[Figura: Diagrama Entidade Relacionamento.](diagrama_images/DigimonV2-DER.drawio.png)</center>

@@ -646,6 +646,7 @@ $cria_chefe$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE PROCEDURE cria_batalha(
 	idInstanciaDigimon UUID,
+	idMissao UUID,
 	defesa_extra_chefe integer DEFAULT 0,
 	ataque_extra_chefe integer DEFAULT 0,
 	vida_extra_chefe integer DEFAULT 0,
@@ -665,8 +666,8 @@ IF nivelInstanciaDigimon IS NULL THEN raise 'instancia do digimon não encontrad
 
 ELSE
 
-INSERT INTO batalha (id_instancia_digimon) VALUES
-	(idInstanciaDigimon) returning id_batalha INTO idBatalha;
+INSERT INTO batalha (id_instancia_digimon, id_missao) VALUES
+	(idInstanciaDigimon, idMissao) returning id_batalha INTO idBatalha;
 
 call cria_monstro(idBatalha, nivelInstanciaDigimon - 3);
 
@@ -972,7 +973,6 @@ declare
 	vidaDigimon integer;
 	idDigivice UUID;
 	idJogador UUID;
-	idMissao UUID;
 
 begin
 
@@ -988,21 +988,16 @@ begin
 	
 		update jogador set vitorias = vitorias + 1 where id_jogador = (
 		select id_jogador from digivice where id_digivice = idDigivice) returning id_jogador into idJogador;
-		
-		select id_missao into idMissao from missao_jogador where concluida = false and id_jogador = idJogador;
-	
-		if idMissao is not null then
-		
-			update instancia_digimon set nivel = nivel + (select nivel from missao where id_missao = idMissao)
-			where id_instancia_digimon = old.id_instancia_digimon;
-		
-			insert into instancia_item (id_digivice, id_item) (
-			select idDigivice as id_digivice ,id_item from missao_item where id_missao = idMissao
-			);
 					
-			update missao_jogador set concluida = true where id_missao = idMissao and id_jogador = idJogador;
+		update instancia_digimon set nivel = nivel + (select nivel from missao where id_missao = old.id_missao)
+		where id_instancia_digimon = old.id_instancia_digimon;
+		
+		insert into instancia_item (id_digivice, id_item) (
+			select idDigivice as id_digivice ,id_item from missao_item where id_missao = old.id_missao
+		);
+					
+		update missao_jogador set concluida = true where id_missao = old.id_missao and id_jogador = idJogador;
 
-		end if;
 	else
 	
 		update jogador set derrotas = derrotas + 1 where id_jogador = (

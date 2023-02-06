@@ -5,7 +5,7 @@ INSERT INTO categoria_jogador(historia, tipo)
 VALUES ('Conhecido pelo grande suporte que fez nas batalhas antigas e pelos feitos ajudando os aliados.', 'Suporte');
 
 INSERT INTO categoria_jogador(historia, tipo)
-VALUES ('Uma vasta mistura de ambos, Possui destreza para duelos alem de conseguir', 'Conservador');
+VALUES ('Uma vasta mistura de ambos, Possui destreza para duelos alem de conseguir.', 'Conservador');
 
 call cria_mapa();
 

@@ -1,9 +1,9 @@
 const db = require("./db");
 var prompt = require("prompt-sync")();
 
-async function criaBatalha(instanciaDigimon) {
+async function criaBatalha(instanciaDigimon, idMissao) {
     try {
-        await db.query(`call cria_batalha('${instanciaDigimon.id_instancia_digimon}')`);
+        await db.query(`call cria_batalha('${instanciaDigimon.id_instancia_digimon}', '${idMissao}')`);
 
         let resMonstros = await db.query(`select * from batalha join monstro
         on batalha.id_batalha = monstro.id_batalha 
@@ -49,9 +49,9 @@ async function batalha(instanciaDigimon, monstro) {
 }
 
 async function batalhaCaraBate(instanciaDigimon, monstro) {
-    console.log("\nSelecione uma opcao:");
+    console.log("\nSelecione uma opcao:\n");
     console.log("1. Atacar");
-    console.log("2. Defender");
+    console.log("2. Defender\n");
     const opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
 
     let vidaAtual;
@@ -86,8 +86,7 @@ async function batalhaMonstroBate(instanciaDigimon, monstro) {
 async function ataca(atacante, defendente, isMonster) {
     try {
         return await db.query(`update ${isMonster ? 'monstro' : 'instancia_digimon'} set vida_atual = vida_atual
-         - (select ataque.dano from ataque join digimon_habilidade dh on dh.id_habilidade = ataque.id_habilidade
-         where dh.id_digimon = '${atacante.id_digimon}') - ${atacante.ataque} where 
+         - ${atacante.dano_habilidade} - ${atacante.ataque} where 
          ${isMonster ? 'id_monstro' : 'id_instancia_digimon'} = '${isMonster ? defendente.id_monstro : defendente.id_instancia_digimon}' returning vida_atual`);
     } catch (error) {
         console.log(error.stack);
@@ -98,8 +97,7 @@ async function ataca(atacante, defendente, isMonster) {
 async function defende(atacante, isMonster) {
     try {
         return await db.query(`update ${isMonster ? 'monstro' : 'instancia_digimon'} set vida_atual = vida_atual
-         + (select defesa.defesa from defesa join digimon_habilidade dh on dh.id_habilidade = defesa.id_habilidade
-         where dh.id_digimon = '${atacante.id_digimon}') + ${atacante.defesa} where 
+         + ${atacante.defesa_habilidade} + ${atacante.defesa} where 
          ${isMonster ? 'id_monstro' : 'id_instancia_digimon'} = '${isMonster ? atacante.id_monstro : atacante.id_instancia_digimon}' returning vida_atual`);
     } catch (error) {
         console.log(error.stack);
