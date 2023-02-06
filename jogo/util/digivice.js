@@ -7,10 +7,35 @@ async function acessaDigivice(jogadorAtualziado){
         const listDigimom = await getInstanciaDigimon(resDigivice);
         const resInstItem = await getInstanciaItem(resDigivice);
 
-        console.log(resDigivice);
-        console.log(listDigimom);
-        console.log(resInstItem);
+        //console.log(resDigivice);
+        console.clear();
+        console.log("\nDigivice\n\n")
+        
+        console.log("Lista de Digimons")
 
+        if (listDigimom.length > 0) {
+            listDigimom.map((result) => {
+                console.log("\n\t" + result.nome);
+                console.log("\n\tTipo: " + result.tipo);
+                console.log("\tNivel: " + result.nivel);
+                console.log("\tVida (total): " + result.vida + ` (${result.vida})`);
+                console.log("\tAtaque: " + result.ataque);
+                console.log("\tDefesa: " + result.defesa);
+                console.log("\tValocidade: " + result.velocidade);
+                console.log("\tDano Habilidade: " + result.dano_habilidade);
+                console.log("\tDefesa Habilidade: " + result.defesa_habilidade);
+            });
+        } else {
+            console.log("\n\t Sem Digimons cadastrados.\n")
+        }
+
+        console.log("\n\nLista de Itens")
+
+        if (resInstItem.length > 0) {
+
+        } else {
+            console.log("\n\t Sem Itens cadastrados.\n")
+        }
     } catch (err) {
         console.error(err);
         console.log("erro ao acessar digivice")
