@@ -16,8 +16,8 @@ async function movimentacao(jogadorAtualziado) {
   console.log("\nSelecione uma opcao:\n");
   console.log("1. Mover jogador");
   console.log("2. Interagir com NPC")
-  console.log("3. Finalizar jogo");
-  console.log("4. Acessa digivice\n");
+  console.log("3. Acessa digivice")
+  console.log("4. Finalizar jogo\n")
 
   let opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
   // console.log(opcao);
@@ -27,11 +27,12 @@ async function movimentacao(jogadorAtualziado) {
   }
 
   if (opcao === '3') {
-    process.exit();
+    await acessaDigivice(jogadorAtualziado)
   }
   
   if (opcao === '4') {
-    await acessaDigivice(jogadorAtualziado)
+    console.log("\nThau Thau, Ate mais!! :)\n")
+    process.exit()
   } 
 
   await movimentacao(await jogador.movimentaJogador(resRegiao, jogadorAtualziado));
@@ -69,15 +70,13 @@ async function main() {
   console.log("2. Sair\n");
 
   const opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
-  console.log(opcao);
 
   switch (opcao) {
     case "1":
       await jogar();
       break;
     case "2":
-      console.clear();
-      console.log("\nThau Thau, Até mais!! :)\n");
+      console.log("\nThau Thau, Ate mais :)\n");
       process.exit();
     default:
       console.clear();
