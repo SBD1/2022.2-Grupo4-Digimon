@@ -155,3 +155,12 @@ call cria_ataque('Eletro Choque', 'bla bla bla', 25);
 call cria_defesa('Máscara Abissal', 'bla bla bla', 70);
 call atribui_habilidade_digimon('Eletro Choque', 'Peledramon');
 call atribui_habilidade_digimon('Máscara Abissal', 'Peledramon');
+
+--Alterações em tuplas de tabelas.
+UPDATE public.npc
+SET nome='Heinsenberg Armeiro'
+WHERE id_npc='e5ef97ac-1511-41d4-be78-fa82a8baaf62';
+
+UPDATE public.npc
+SET nome='Hanna Fruteira'
+WHERE id_npc='2e57761f-5df8-4419-b365-5fe674249168';
