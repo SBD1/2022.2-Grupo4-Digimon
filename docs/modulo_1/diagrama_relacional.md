@@ -314,9 +314,9 @@ Legenda:
 - Missao é de algum NPC. Cardinalidade (1 : 1)
 - NPC pode ter 0 ou mais missões. Cardinalidade(0 : N)
 
-#### Batalha - possui - Missao
-- Batalha pode ter apenas 1 missao
-- 1 missão pode ser de várias batalhas
+#### Missao - possui - Batalha
+- Batalha pode ser de 1 missao
+- Missão pode ter nenhuma ou várias batalhas
 
 #### NPC - esta - Regiao
 - NPC deve estar em uma Regiao. Cardinalidade (1 : 1)
