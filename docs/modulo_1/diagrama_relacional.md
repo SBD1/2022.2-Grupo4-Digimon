@@ -18,8 +18,8 @@
     - id_mapa
 
 - Região_Região
-   - id_regiao1
-   - id_regiao2
+    - id_regiao1
+    - id_regiao2
 
 - Categoria_Jogador
     - id_categoria_jogador
@@ -40,7 +40,7 @@
     - id_jogador
 
 - Categoria_Digimon
-    - id_categoria_digimon
+    - id_categoria
 
 - Anjo
     - defesa_extra
@@ -91,7 +91,7 @@
     - descricao
 
 - Alimento
-    - experiencia
+    - nivel
     - cura
 
 - Chave
@@ -126,9 +126,7 @@
     - vida_atual
     - id_digimon
     - id_batalha
-
-- Capanga
-
+  
 - Chefe 
     - defesa_extra
     - ataque_extra
@@ -227,7 +225,7 @@ Legenda:
 
 **Item**: <ins>id_item</ins>, nome, preco_de_venda, descricao;
 
-**Alimento**: experiencia, cura;
+**Alimento**: nivel, cura;
 
 **Chave**: tipo;
 
@@ -311,6 +309,14 @@ Legenda:
 #### Missao - entrega - Item
 - Missao pode entregar nenhum ou vários Item(S). Cardinalidade (0 : N)
 - Item pode ser entregue por nenhuma ou várias Missao(s). Cardinalidade (0 : N)
+
+#### Missao - contem - NPC
+- Missao é de algum NPC. Cardinalidade (1 : 1)
+- NPC pode ter 0 ou mais missões. Cardinalidade(0 : N)
+
+#### Batalha - possui - Missao
+- Batalha pode ter apenas 1 missao
+- 1 missão pode ser de várias batalhas
 
 #### NPC - esta - Regiao
 - NPC deve estar em uma Regiao. Cardinalidade (1 : 1)
