@@ -40,10 +40,7 @@ async function interageMissao(jogadorAtualziado, npc) {
         // cadastra essa missao ao usuario
 
         console.log("Missao Aceita com sucesso!\n");
-        const resMissao = await db.query(
-          `select * from missao where id_npc = '${npc.id_npc}'`
-        );
-        await insertMissaoJogador(resMissao.rows[0], jogadorAtualziado);
+        await insertMissaoJogador(missao, jogadorAtualziado);
         const resDigivice = await digivice.getDigivice(jogadorAtualziado);
 
         const resInstDigimon = await digivice.getInstanciaDigimon(resDigivice);
@@ -59,7 +56,7 @@ async function interageMissao(jogadorAtualziado, npc) {
         }
 
         const opcao = prompt("Digite o numero do digimon para batalhar: "); // opcao digitada no terminal
-        await batalha.criaBatalha(resInstDigimon[Number(opcao) - 1]);
+        await batalha.criaBatalha(resInstDigimon[Number(opcao) - 1], missao.id_missao);
         await concluiMissaoJogador(resMissao.rows[0], jogadorAtualziado);
       }
       else{

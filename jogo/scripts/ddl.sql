@@ -231,40 +231,6 @@ alter table instancia_digimon add CONSTRAINT "instancia_digimon_pkey" PRIMARY KE
 alter table instancia_digimon add CONSTRAINT "instancia_digimon_digimon_fkey" FOREIGN KEY ("id_digimon") REFERENCES "digimon"("id_digimon");
 alter table instancia_digimon add CONSTRAINT "instancia_digimon_digivice_fkey" FOREIGN KEY ("id_digivice") REFERENCES "digivice"("id_digivice");
 
-CREATE TABLE "batalha" (
-  "id_batalha" UUID NOT NULL DEFAULT uuid_generate_v4(),
-  "id_instancia_digimon" UUID NOT NULL
-);
-
-alter table batalha add CONSTRAINT "batalha_pkey" PRIMARY KEY ("id_batalha");
-alter table batalha add CONSTRAINT "batalha_instancia_digimon_fkey" FOREIGN KEY ("id_instancia_digimon") REFERENCES "instancia_digimon"("id_instancia_digimon");
-
-CREATE TABLE "monstro" (
-    "id_monstro" UUID NOT NULL DEFAULT uuid_generate_v4(),
-    "nivel" integer DEFAULT 1,
-    "vida_atual" integer NOT NULL,
-    "vida" integer NOT NULL,
-  "defesa" integer NOT NULL,
-  "ataque" integer NOT NULL,
-  "velocidade" integer NOT NULL,
-  "id_digimon" UUID NOT NULL,
-  "id_batalha" UUID NOT NULL
-);
-
-alter table monstro add CONSTRAINT "monstro_pkey" PRIMARY KEY ("id_monstro");
-alter table monstro add CONSTRAINT "monstro_digimon_fkey" FOREIGN KEY ("id_digimon") REFERENCES "digimon"("id_digimon");
-alter table monstro add CONSTRAINT "monstro_batalha_fkey" FOREIGN KEY ("id_batalha") REFERENCES "batalha"("id_batalha");
-
-CREATE TABLE "chefe" (
-  "defesa_extra" integer DEFAULT 0,
-  "ataque_extra" integer DEFAULT 0,
-  "vida_extra" integer DEFAULT 0,
-    "velocidade_extra" integer DEFAULT 0,
-    "id_monstro" UUID NOT NULL
-);
-
-alter table chefe add CONSTRAINT "chefe_monstro_fkey" FOREIGN KEY ("id_monstro") REFERENCES "monstro"("id_monstro");
-
 CREATE TABLE "instancia_digimon_instancia_item" (
     "id_instancia_digimon" UUID NOT NULL,
     "id_instancia_item" UUID NOT NULL
@@ -324,6 +290,43 @@ CREATE TABLE "missao" (
 alter table missao add CONSTRAINT "missao_nome_ukey" UNIQUE ("nome");
 alter table missao add CONSTRAINT "missao_pkey" PRIMARY KEY ("id_missao");
 alter table missao add CONSTRAINT "missao_npc_fkey" FOREIGN KEY ("id_npc") REFERENCES "npc"("id_npc");
+
+CREATE TABLE "batalha" (
+  "id_batalha" UUID NOT NULL DEFAULT uuid_generate_v4(),
+  "id_instancia_digimon" UUID NOT NULL,
+  "id_missao" UUID NOT NULL
+);
+
+alter table batalha add CONSTRAINT "batalha_pkey" PRIMARY KEY ("id_batalha");
+alter table batalha add CONSTRAINT "batalha_instancia_digimon_fkey" FOREIGN KEY ("id_instancia_digimon") REFERENCES "instancia_digimon"("id_instancia_digimon");
+alter table batalha add CONSTRAINT "batalha_missao_fkey" FOREIGN KEY ("id_missao") REFERENCES "missao"("id_missao");
+
+
+CREATE TABLE "monstro" (
+    "id_monstro" UUID NOT NULL DEFAULT uuid_generate_v4(),
+    "nivel" integer DEFAULT 1,
+    "vida_atual" integer NOT NULL,
+    "vida" integer NOT NULL,
+  "defesa" integer NOT NULL,
+  "ataque" integer NOT NULL,
+  "velocidade" integer NOT NULL,
+  "id_digimon" UUID NOT NULL,
+  "id_batalha" UUID NOT NULL
+);
+
+alter table monstro add CONSTRAINT "monstro_pkey" PRIMARY KEY ("id_monstro");
+alter table monstro add CONSTRAINT "monstro_digimon_fkey" FOREIGN KEY ("id_digimon") REFERENCES "digimon"("id_digimon");
+alter table monstro add CONSTRAINT "monstro_batalha_fkey" FOREIGN KEY ("id_batalha") REFERENCES "batalha"("id_batalha");
+
+CREATE TABLE "chefe" (
+  "defesa_extra" integer DEFAULT 0,
+  "ataque_extra" integer DEFAULT 0,
+  "vida_extra" integer DEFAULT 0,
+    "velocidade_extra" integer DEFAULT 0,
+    "id_monstro" UUID NOT NULL
+);
+
+alter table chefe add CONSTRAINT "chefe_monstro_fkey" FOREIGN KEY ("id_monstro") REFERENCES "monstro"("id_monstro");
 
 CREATE TABLE "missao_jogador" (
     "id_missao" UUID NOT NULL,
