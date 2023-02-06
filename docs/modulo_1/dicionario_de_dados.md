@@ -45,7 +45,7 @@
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | id_missao  | Determinante  | uuid  | 35 | Número de identificador da missão | 9013 |
 | nome | Simples | varchar | 20 | Nome da missão | Pegue seu digivice |
-| experiencia | Simples | int | 6 | Experiencia que a missão vai dar ao ser concluída | 230000 |
+| nivel | Simples | int | 6 | Experiencia que a missão vai dar ao ser concluída | 230000 |
 
 ## Entidade: dialogo
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
@@ -116,7 +116,7 @@
 | nome | Simples | int | 6 | Nome do item | espada |
 | preco_de_venda  | simples  | int  | 6 | Valor da venda | 6465 |
 | descricao | Simples | varchar | 255 | Descrição do item | Espada de fogo |
-| experiencia  | simples  | int | 6 | Experiência que o alimento vai dar ao ser consumido | 10000 |
+| nivel | simples  | int | 6 | Experiência que o alimento vai dar ao ser consumido | 10000 |
 | cura | Simples | int | 3 | Quantidade de pontos de vida em que o digimon recupera ao consumir o alimento | 100 |
 
 ## Entidade: chave
@@ -178,18 +178,6 @@
 | velocidade | Simples | int | 3 | Quantidade da velocidade do monstro | 200 |
 | vida_atual | Simples | int | 3 | Quantidade de vida que o monstro tem atualmente | 30 |
 | defesa | Simples | int | 3 | Quantidade de defesa que o monstro tem | 25 |
-
-## Entidade: capanga
-| Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| id_monstro  | Determinante  | uuid  | 35 | Número de identificador do monstro | 8685 |
-| nivel | Simples | int | 2 | Nível do monstro | 23 |
-| vida | Simples | int | 3 | Vida do monstro | 100 |
-| ataque | Simples | int | 3 | Quantidade do ataque do monstro | 30 |
-| velocidade | Simples | int | 3 | Quantidade da velocidade do monstro | 200 |
-| vida_atual | Simples | int | 3 | Quantidade de vida que o monstro tem atualmente | 30 |
-| defesa | Simples | int | 3 | Quantidade de defesa que o monstro tem | 25 |
-
 
 ## Entidade: chefe
 | Atributos  |  Classe | Tipo | Tamanho | Descrição | Exemplo |
