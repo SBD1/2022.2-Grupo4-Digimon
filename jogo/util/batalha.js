@@ -49,9 +49,9 @@ async function batalha(instanciaDigimon, monstro) {
 }
 
 async function batalhaCaraBate(instanciaDigimon, monstro) {
-    console.log("\nSelecione uma opcao:");
+    console.log("\nSelecione uma opcao:\n");
     console.log("1. Atacar");
-    console.log("2. Defender");
+    console.log("2. Defender\n");
     const opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
 
     let vidaAtual;

@@ -48,7 +48,9 @@ async function interagirNPC(npc, jogadorAtualziado) {
     try {
 
         const resDialogo = await getDialogoNPC(npc);
-        console.log(resDialogo.texto);
+        
+        console.clear();
+        console.log('\n' + npc.nome + ': \"' + resDialogo.texto + '\"');
         
         if (npc.tipo === 'guia') {
             await missao.interageMissao(jogadorAtualziado, npc);

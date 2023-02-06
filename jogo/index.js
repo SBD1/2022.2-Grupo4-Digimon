@@ -13,11 +13,11 @@ async function movimentacao(jogadorAtualziado) {
   const resNpc = await npc.getNPCRegiao(resRegiao);
   console.log(`Por aqui temos o NPC: ${resNpc.nome}`);
   // Menu
-  console.log("\nSelecione uma opcao:");
+  console.log("\nSelecione uma opcao:\n");
   console.log("1. Mover jogador");
   console.log("2. Interagir com NPC")
   console.log("3. Finalizar jogo");
-  console.log("4. Acessa digivce");
+  console.log("4. Acessa digivice\n");
 
   let opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
   // console.log(opcao);
@@ -64,9 +64,9 @@ async function main() {
   console.clear();
 
   // Menu
-  console.log("\nSelecione uma opcao para comecar:");
+  console.log("\nSelecione uma opcao para comecar:\n");
   console.log("1. Jogar");
-  console.log("2. Sair");
+  console.log("2. Sair\n");
 
   const opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
   console.log(opcao);
@@ -76,6 +76,8 @@ async function main() {
       await jogar();
       break;
     case "2":
+      console.clear();
+      console.log("\nThau Thau, Até mais!! :)\n");
       process.exit();
     default:
       console.clear();

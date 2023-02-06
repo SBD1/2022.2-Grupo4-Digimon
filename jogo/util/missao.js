@@ -13,7 +13,7 @@ async function interageMissao(jogadorAtualziado, npc) {
     // console.clear();
     await menu.movimentacao(jogadorAtualziado);
   }
-  console.log(`missao disponivel: ${missao.nome}`);
+  console.log(`Missao disponivel: ${missao.nome}`);
 
   //verifica se jogador ja possui essa missao
   const resMissaoJogador = await getMissaoJogador(missao, jogadorAtualziado);
@@ -24,9 +24,9 @@ async function interageMissao(jogadorAtualziado, npc) {
     await menu.movimentacao(jogadorAtualziado);
   }
 
-  console.log("\nSelecione uma opcao:");
+  console.log("\nSelecione uma opcao:\n");
   console.log("1. Aceitar essa missao");
-  console.log("2. Negar essa missao");
+  console.log("2. Negar essa missao\n");
   const opcao = prompt("Digite a opcao: "); // opcao digitada no terminal
 
   if (opcao == "1") {
