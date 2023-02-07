@@ -7,13 +7,17 @@ const digivice = require("./digivice");
 async function selecionarJogador() {
     console.clear();
 
+    console.log("Seja Vindo ao Digimon Game!!\n")
+    console.log("Para iniciar, por favor informe o nome do seu jogador.")
+    console.log("Caso queira criar um novo jogador, insira o nome que deseja para esse novo jogador.\n\n")
+
     const nomeJogador = prompt("Digite o nome do seu jogador: ");
 
     const jogadorEncontrado = await getJogador(nomeJogador);
     console.log(jogadorEncontrado)
     if (jogadorEncontrado !== undefined) {
         console.clear();
-        console.log(`Bem vindo de volta ${nomeJogador}!!\n`);
+        console.log(`Bem vindo de volta ${nomeJogador}.\n`);
         return jogadorEncontrado;
     }
 

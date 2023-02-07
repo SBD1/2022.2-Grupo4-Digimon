@@ -28,14 +28,14 @@ INSERT INTO public.instancia_digimon (nivel, id_digimon, id_digivice) VALUES(5, 
 UPDATE public.instancia_digimon SET vida_atual = 100 WHERE id_digivice = '${digivice.id_digivice}' AND id_digimon = '${digimon.id_digimon}'
 
 -- digivice
-select id_digivice from digivice where id_jogador = '${jogadorAtualziado.id_jogador}'
+select id_digivice from digivice where id_jogador = '${jogadorAtualizado.id_jogador}'
 select * from instancia_digimon where id_digivice = '${digivice.id_digivice}'
 select * from instancia_item where id_digivice = '${digivice.id_digivice}'
 
 -- missao
 select * from missao where id_npc = '${npc.id_npc}'
-select * from missao_jogador where id_missao = '${missao.id_missao}' and id_jogador = '${jogadorAtualziado.id_jogador}'
-insert into missao_jogador(id_missao, id_jogador, concluida) values('${missao.id_missao}', '${jogadorAtualziado.id_jogador}', false)
+select * from missao_jogador where id_missao = '${missao.id_missao}' and id_jogador = '${jogadorAtualizado.id_jogador}'
+insert into missao_jogador(id_missao, id_jogador, concluida) values('${missao.id_missao}', '${jogadorAtualizado.id_jogador}', false)
 
 -- npc
 SELECT * FROM npc WHERE id_regiao = '${regiao.id_regiao}'

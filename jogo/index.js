@@ -6,8 +6,8 @@ const regiao = require("./util/regiao");
 const npc = require("./util/npc");
 const { acessaDigivice } = require("./util/digivice");
 
-async function movimentacao(jogadorAtualziado) {
-  const resRegiao = await regiao.getRegiao(jogadorAtualziado); // seleciona a regiao atual do jogador
+async function movimentacao(jogadorAtualizado) {
+  const resRegiao = await regiao.getRegiao(jogadorAtualizado); // seleciona a regiao atual do jogador
   console.log(`Voce esta na regiao: ${resRegiao.nome}`);
   
   const resNpc = await npc.getNPCRegiao(resRegiao);
@@ -23,11 +23,11 @@ async function movimentacao(jogadorAtualziado) {
   // console.log(opcao);
 
   if (opcao === '2') {
-    await npc.interagirNPC(resNpc, jogadorAtualziado);
+    await npc.interagirNPC(resNpc, jogadorAtualizado);
   }
 
   if (opcao === '3') {
-    await acessaDigivice(jogadorAtualziado)
+    await acessaDigivice(jogadorAtualizado)
   }
   
   if (opcao === '4') {
@@ -35,14 +35,14 @@ async function movimentacao(jogadorAtualziado) {
     process.exit()
   } 
 
-  await movimentacao(await jogador.movimentaJogador(resRegiao, jogadorAtualziado));
+  await movimentacao(await jogador.movimentaJogador(resRegiao, jogadorAtualizado));
 }
 
 async function jogar() {
   const jogadorCriado = await jogador.selecionarJogador(); // cria/recupera jogador
   // const resRegiao = await regiao.getRegiao(jogadorCriado); // seleciona a regiao atual do jogador
   // console.log(`Voce esta na regiao: ${resRegiao.nome}`);
-  // const jogadorAtualziado = await jogador.movimentaJogador(resRegiao, jogadorCriado); // moviamenta jogador
+  // const jogadorAtualizado = await jogador.movimentaJogador(resRegiao, jogadorCriado); // moviamenta jogador
   movimentacao(jogadorCriado);
 }
 
@@ -58,14 +58,16 @@ async function conectarBanco() {
 }
 
 async function main() {
-  console.log("BEM VINDO AO DIGIMON GAME");
+  console.log("Seja Vindo ao Digimon Game!!\n")
   console.log(); // colocar a historia do game
 
   await conectarBanco();
   console.clear();
 
   // Menu
-  console.log("\nSelecione uma opcao para comecar:\n");
+  console.log("Seja Vindo ao Digimon Game!!\n")
+
+  console.log("Selecione uma opcao para comecar:\n");
   console.log("1. Jogar");
   console.log("2. Sair\n");
 

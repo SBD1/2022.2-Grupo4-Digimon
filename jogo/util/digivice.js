@@ -1,9 +1,9 @@
 const db = require("./db");
 
-async function acessaDigivice(jogadorAtualziado){
+async function acessaDigivice(jogadorAtualizado){
     try {
         //acessa a id_digivice para acessar as instancias de digimon e item para cada jogador
-        const resDigivice = await getDigivice(jogadorAtualziado);
+        const resDigivice = await getDigivice(jogadorAtualizado);
         const listDigimom = await getInstanciaDigimon(resDigivice);
         const resInstItem = await getInstanciaItem(resDigivice);
 
@@ -42,9 +42,9 @@ async function acessaDigivice(jogadorAtualziado){
     }
 }
 
-async function getDigivice(jogadorAtualziado){
+async function getDigivice(jogadorAtualizado){
     try {
-        const resDigivice = await db.query(`select id_digivice from digivice where id_jogador = '${jogadorAtualziado.id_jogador}'`);
+        const resDigivice = await db.query(`select id_digivice from digivice where id_jogador = '${jogadorAtualizado.id_jogador}'`);
 
         return resDigivice.rows[0];
 

@@ -25,12 +25,12 @@ async function getDialogoNPC(npc) {
     }
 }
 
-async function mercadorNPC(jogadorAtualziado, npc) {
+async function mercadorNPC(jogadorAtualizado, npc) {
     console.log("CRIAR LOGICA PARA A LOJA DE ITENS");
 }
 
-async function curandeiroNPC(jogadorAtualziado) {
-    const resDigivice = await digivice.getDigivice(jogadorAtualziado);
+async function curandeiroNPC(jogadorAtualizado) {
+    const resDigivice = await digivice.getDigivice(jogadorAtualizado);
     const resInstDigimon = await digivice.getInstanciaDigimon(resDigivice);
 
     let auxDigimon = 1;
@@ -43,7 +43,7 @@ async function curandeiroNPC(jogadorAtualziado) {
     await digimon.curaDigimon(resInstDigimon[Number(opcao) - 1]);
 }
 
-async function interagirNPC(npc, jogadorAtualziado) {
+async function interagirNPC(npc, jogadorAtualizado) {
     try {
 
         const resDialogo = await getDialogoNPC(npc);
@@ -52,16 +52,16 @@ async function interagirNPC(npc, jogadorAtualziado) {
         console.log('\n' + npc.nome + ': \"' + resDialogo.texto + '\"');
         
         if (npc.tipo === 'guia') {
-            await missao.interageMissao(jogadorAtualziado, npc);
+            await missao.interageMissao(jogadorAtualizado, npc);
         } 
         
         else if (npc.tipo === 'mercador') {
             console.log("CRIAR A LOGICA DA LOJA");
-            await mercadorNPC(jogadorAtualziado, npc);
+            await mercadorNPC(jogadorAtualizado, npc);
         } 
         
         else if (npc.tipo === 'curandeiro') {
-            await curandeiroNPC(jogadorAtualziado);
+            await curandeiroNPC(jogadorAtualizado);
         }
 
     } catch (error) {
