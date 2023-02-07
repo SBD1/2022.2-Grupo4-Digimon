@@ -1,0 +1,2651 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../diagrama_relacional/">
+      
+      
+        <link rel="next" href="../apresentacao/modulo_1/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>Dicionário de Dados - SBD1 Digimon</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Poppins";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/styles.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dicionario-de-dados" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="SBD1 Digimon" class="md-header__button md-logo" aria-label="SBD1 Digimon" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SBD1 Digimon
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dicionário de Dados
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SBD1/2022.2-Grupo8-Digimon" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SBD1 Digimon Rep
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../diagrama_entidade_relacionamento/" class="md-tabs__link md-tabs__link--active">
+        Módulo 1
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../modulo_2/apresentacao/modulo_2/" class="md-tabs__link">
+        Módulo 2
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../modulo_3/modulo_3/" class="md-tabs__link">
+        Módulo 3
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../modulo_4_entrega_final/modulo_4/" class="md-tabs__link">
+        Módulo 4
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SBD1 Digimon" class="md-nav__button md-logo" aria-label="SBD1 Digimon" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    SBD1 Digimon
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SBD1/2022.2-Grupo8-Digimon" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SBD1 Digimon Rep
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Módulo 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Módulo 1
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagrama_entidade_relacionamento/" class="md-nav__link">
+        Diagrama Entidade Relacionamento (DER)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagrama_relacional/" class="md-nav__link">
+        Diagrama Relacional
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Dicionário de Dados
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Dicionário de Dados
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-jogador" class="md-nav__link">
+    Entidade: jogador
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-categoria_jogador" class="md-nav__link">
+    Entidade: categoria_jogador
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-regiao" class="md-nav__link">
+    Entidade: regiao
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-mapa" class="md-nav__link">
+    Entidade: mapa
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-realiza" class="md-nav__link">
+    Entidade: realiza
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-missao" class="md-nav__link">
+    Entidade: missao
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-dialogo" class="md-nav__link">
+    Entidade: dialogo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-npc" class="md-nav__link">
+    Entidade: npc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-habitante" class="md-nav__link">
+    Entidade: habitante
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-guia" class="md-nav__link">
+    Entidade: guia
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-mercador" class="md-nav__link">
+    Entidade: mercador
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-armeiro" class="md-nav__link">
+    Entidade: armeiro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-fruteiro" class="md-nav__link">
+    Entidade: fruteiro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-vende" class="md-nav__link">
+    Entidade: vende
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-item" class="md-nav__link">
+    Entidade: item
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-alimento" class="md-nav__link">
+    Entidade: alimento
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-chave" class="md-nav__link">
+    Entidade: chave
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-equipamento" class="md-nav__link">
+    Entidade: equipamento
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-instancia_item" class="md-nav__link">
+    Entidade: instancia_item
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-digivice" class="md-nav__link">
+    Entidade: digivice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-instancia_digimon" class="md-nav__link">
+    Entidade: instancia_digimon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-batalha" class="md-nav__link">
+    Entidade: batalha
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-monstro" class="md-nav__link">
+    Entidade: monstro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-chefe" class="md-nav__link">
+    Entidade: chefe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-digimon" class="md-nav__link">
+    Entidade: digimon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-categoria_digimon" class="md-nav__link">
+    Entidade: categoria_digimon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-anjo" class="md-nav__link">
+    Entidade: anjo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-ghost" class="md-nav__link">
+    Entidade: ghost
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-monge" class="md-nav__link">
+    Entidade: monge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-ciborg" class="md-nav__link">
+    Entidade: ciborg
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-dragao" class="md-nav__link">
+    Entidade: dragao
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-habilidade" class="md-nav__link">
+    Entidade: habilidade
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-ataque" class="md-nav__link">
+    Entidade: ataque
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-defesa" class="md-nav__link">
+    Entidade: defesa
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../apresentacao/modulo_1/" class="md-nav__link">
+        Apresentação
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Módulo 2
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Módulo 2
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo_2/apresentacao/modulo_2/" class="md-nav__link">
+        Apresentação
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Módulo 3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Módulo 3
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo_3/modulo_3/" class="md-nav__link">
+        Apresentação
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Módulo 4
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Módulo 4
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modulo_4_entrega_final/modulo_4/" class="md-nav__link">
+        Apresentação
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-jogador" class="md-nav__link">
+    Entidade: jogador
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-categoria_jogador" class="md-nav__link">
+    Entidade: categoria_jogador
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-regiao" class="md-nav__link">
+    Entidade: regiao
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-mapa" class="md-nav__link">
+    Entidade: mapa
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-realiza" class="md-nav__link">
+    Entidade: realiza
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-missao" class="md-nav__link">
+    Entidade: missao
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-dialogo" class="md-nav__link">
+    Entidade: dialogo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-npc" class="md-nav__link">
+    Entidade: npc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-habitante" class="md-nav__link">
+    Entidade: habitante
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-guia" class="md-nav__link">
+    Entidade: guia
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-mercador" class="md-nav__link">
+    Entidade: mercador
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-armeiro" class="md-nav__link">
+    Entidade: armeiro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-fruteiro" class="md-nav__link">
+    Entidade: fruteiro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-vende" class="md-nav__link">
+    Entidade: vende
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-item" class="md-nav__link">
+    Entidade: item
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-alimento" class="md-nav__link">
+    Entidade: alimento
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-chave" class="md-nav__link">
+    Entidade: chave
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-equipamento" class="md-nav__link">
+    Entidade: equipamento
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-instancia_item" class="md-nav__link">
+    Entidade: instancia_item
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-digivice" class="md-nav__link">
+    Entidade: digivice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-instancia_digimon" class="md-nav__link">
+    Entidade: instancia_digimon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-batalha" class="md-nav__link">
+    Entidade: batalha
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-monstro" class="md-nav__link">
+    Entidade: monstro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-chefe" class="md-nav__link">
+    Entidade: chefe
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-digimon" class="md-nav__link">
+    Entidade: digimon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-categoria_digimon" class="md-nav__link">
+    Entidade: categoria_digimon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-anjo" class="md-nav__link">
+    Entidade: anjo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-ghost" class="md-nav__link">
+    Entidade: ghost
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-monge" class="md-nav__link">
+    Entidade: monge
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-ciborg" class="md-nav__link">
+    Entidade: ciborg
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-dragao" class="md-nav__link">
+    Entidade: dragao
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-habilidade" class="md-nav__link">
+    Entidade: habilidade
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-ataque" class="md-nav__link">
+    Entidade: ataque
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-defesa" class="md-nav__link">
+    Entidade: defesa
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="dicionario-de-dados">Dicionário de Dados</h1>
+<h2 id="entidade-jogador">Entidade: jogador</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_jogador</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificação do jogador</td>
+<td>0001</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Apelido do jogador</td>
+<td>Pedro21</td>
+</tr>
+<tr>
+<td>vitorias</td>
+<td>Simples</td>
+<td>int</td>
+<td>6</td>
+<td>Vitórias do jogador</td>
+<td>123433</td>
+</tr>
+<tr>
+<td>derrotas</td>
+<td>Simples</td>
+<td>int</td>
+<td>6</td>
+<td>Derrotas do jogador</td>
+<td>432144</td>
+</tr>
+<tr>
+<td>dinheiro</td>
+<td>Simples</td>
+<td>int</td>
+<td>6</td>
+<td>Vitória contra monstros digimon</td>
+<td>100000</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-categoria_jogador">Entidade: categoria_jogador</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_categoria</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificação da categoria</td>
+<td>0001</td>
+</tr>
+<tr>
+<td>historia</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>255</td>
+<td>História do jogador</td>
+<td>Meu nome é pedro e gosto muito de digimon.</td>
+</tr>
+<tr>
+<td>tipo</td>
+<td>Simples</td>
+<td>enum</td>
+<td>6</td>
+<td>Tipo do jogador</td>
+<td>Duelista, Conversador, Suporte</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-regiao">Entidade: regiao</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_regiao</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificação da região</td>
+<td>0001</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>nome da região</td>
+<td>Loja</td>
+</tr>
+<tr>
+<td>eixo_x</td>
+<td>Simples</td>
+<td>int</td>
+<td>1</td>
+<td>Coordenada do objeto no eixo x</td>
+<td>No mínimo: 0 e No máximo: 3</td>
+</tr>
+<tr>
+<td>eixo_y</td>
+<td>Simples</td>
+<td>int</td>
+<td>1</td>
+<td>Coordenada do objeto no eixo y</td>
+<td>No mínimo: 0 e No máximo: 2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-mapa">Entidade: mapa</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_mapa</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificação do mapa</td>
+<td>0014</td>
+</tr>
+<tr>
+<td>altura</td>
+<td>Simples</td>
+<td>int</td>
+<td>4</td>
+<td>Altura do mapa</td>
+<td>2</td>
+</tr>
+<tr>
+<td>largura</td>
+<td>Simples</td>
+<td>int</td>
+<td>4</td>
+<td>Largura do mapa</td>
+<td>100</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>255</td>
+<td>Descrição sobre o mapa</td>
+<td>Mapa com montanhas.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-realiza">Entidade: realiza</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_realiza</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador ação</td>
+<td>0023</td>
+</tr>
+<tr>
+<td>concluida</td>
+<td>Simples</td>
+<td>bool</td>
+<td>1</td>
+<td>Se a missão foi realizada ou não</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-missao">Entidade: missao</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_missao</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da missão</td>
+<td>9013</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome da missão</td>
+<td>Pegue seu digivice</td>
+</tr>
+<tr>
+<td>nivel</td>
+<td>Simples</td>
+<td>int</td>
+<td>6</td>
+<td>Experiencia que a missão vai dar ao ser concluída</td>
+<td>230000</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-dialogo">Entidade: dialogo</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_dialogo</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do diólogo</td>
+<td>5345</td>
+</tr>
+<tr>
+<td>texto</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>255</td>
+<td>Texto do dialogo</td>
+<td>Oi tudo bem?</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-npc">Entidade: npc</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_npc</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do npc</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome do npc</td>
+<td>Jorge</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-habitante">Entidade: habitante</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_npc</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do npc</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome do npc</td>
+<td>João</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-guia">Entidade: guia</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_npc</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do npc</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome do npc</td>
+<td>Pedro</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-mercador">Entidade: mercador</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_npc</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do mercador</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome do npc</td>
+<td>Pedro</td>
+</tr>
+<tr>
+<td>tipo</td>
+<td>Simples</td>
+<td>enum</td>
+<td>6</td>
+<td>Tipo de mercador</td>
+<td>Mercador de armas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-armeiro">Entidade: armeiro</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_npc</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do mercador</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome do npc</td>
+<td>Pedro</td>
+</tr>
+<tr>
+<td>tipo</td>
+<td>Simples</td>
+<td>enum</td>
+<td>6</td>
+<td>Tipo de mercador</td>
+<td>Mercador de armas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-fruteiro">Entidade: fruteiro</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_npc</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do mercador</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome do npc</td>
+<td>Pedro</td>
+</tr>
+<tr>
+<td>tipo</td>
+<td>Simples</td>
+<td>enum</td>
+<td>6</td>
+<td>Tipo de mercador</td>
+<td>Mercador de armas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-vende">Entidade: vende</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_venda</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da venda</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>preco</td>
+<td>Simples</td>
+<td>int</td>
+<td>6</td>
+<td>Preço do item</td>
+<td>s150</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-item">Entidade: item</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_item</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do item</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>int</td>
+<td>6</td>
+<td>Nome do item</td>
+<td>espada</td>
+</tr>
+<tr>
+<td>preco_de_venda</td>
+<td>simples</td>
+<td>int</td>
+<td>6</td>
+<td>Valor da venda</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>255</td>
+<td>Descrição do item</td>
+<td>Espada de fogo</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-alimento">Entidade: alimento</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_item</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do item</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>int</td>
+<td>6</td>
+<td>Nome do item</td>
+<td>espada</td>
+</tr>
+<tr>
+<td>preco_de_venda</td>
+<td>simples</td>
+<td>int</td>
+<td>6</td>
+<td>Valor da venda</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>255</td>
+<td>Descrição do item</td>
+<td>Espada de fogo</td>
+</tr>
+<tr>
+<td>nivel</td>
+<td>simples</td>
+<td>int</td>
+<td>6</td>
+<td>Experiência que o alimento vai dar ao ser consumido</td>
+<td>10000</td>
+</tr>
+<tr>
+<td>cura</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de pontos de vida em que o digimon recupera ao consumir o alimento</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-chave">Entidade: chave</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_item</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do item</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>int</td>
+<td>6</td>
+<td>Nome do item</td>
+<td>espada</td>
+</tr>
+<tr>
+<td>preco_de_venda</td>
+<td>simples</td>
+<td>int</td>
+<td>6</td>
+<td>Valor da venda</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>255</td>
+<td>Descrição do item</td>
+<td>Espada de fogo</td>
+</tr>
+<tr>
+<td>tipo</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Tipo da chave</td>
+<td>chave de sala do boss</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-equipamento">Entidade: equipamento</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_item</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do item</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>int</td>
+<td>6</td>
+<td>Nome do item</td>
+<td>espada</td>
+</tr>
+<tr>
+<td>preco_de_venda</td>
+<td>simples</td>
+<td>int</td>
+<td>6</td>
+<td>Valor da venda</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>255</td>
+<td>Descrição do item</td>
+<td>Espada de fogo</td>
+</tr>
+<tr>
+<td>ataque_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>Ataque extra que o equipamento</td>
+<td>120</td>
+</tr>
+<tr>
+<td>defesa_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>Defesa extra que o equipamento</td>
+<td>130</td>
+</tr>
+<tr>
+<td>vida_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>Vida extra que o equipamento</td>
+<td>140</td>
+</tr>
+<tr>
+<td>velocidade_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>Velocidade extra que o equipamento</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-instancia_item">Entidade: instancia_item</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_instancia_item</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da instância do item</td>
+<td>6465</td>
+</tr>
+<tr>
+<td>quantidade</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade do item</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-digivice">Entidade: digivice</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_digivice</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do digivice</td>
+<td>6465</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-instancia_digimon">Entidade: instancia_digimon</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_instancia_digimon</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da instância do digimon</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>nivel</td>
+<td>Simples</td>
+<td>int</td>
+<td>2</td>
+<td>Nível do digimon</td>
+<td>23</td>
+</tr>
+<tr>
+<td>vida</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Vida do digimon</td>
+<td>100</td>
+</tr>
+<tr>
+<td>ataque</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade do ataque</td>
+<td>30</td>
+</tr>
+<tr>
+<td>velocidade</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade da velocidade</td>
+<td>200</td>
+</tr>
+<tr>
+<td>vida_atual</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de vida que o digimon tem atualmente</td>
+<td>30</td>
+</tr>
+<tr>
+<td>defesa</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de defesa que o digimon tem</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-batalha">Entidade: batalha</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_batalha</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da batalha</td>
+<td>8685</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-monstro">Entidade: monstro</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_monstro</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do monstro</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>nivel</td>
+<td>Simples</td>
+<td>int</td>
+<td>2</td>
+<td>Nível do monstro</td>
+<td>23</td>
+</tr>
+<tr>
+<td>vida</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Vida do monstro</td>
+<td>100</td>
+</tr>
+<tr>
+<td>ataque</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade do ataque do monstro</td>
+<td>30</td>
+</tr>
+<tr>
+<td>velocidade</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade da velocidade do monstro</td>
+<td>200</td>
+</tr>
+<tr>
+<td>vida_atual</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de vida que o monstro tem atualmente</td>
+<td>30</td>
+</tr>
+<tr>
+<td>defesa</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de defesa que o monstro tem</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-chefe">Entidade: chefe</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_monstro</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do monstro</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>nivel</td>
+<td>Simples</td>
+<td>int</td>
+<td>2</td>
+<td>Nível do monstro</td>
+<td>23</td>
+</tr>
+<tr>
+<td>vida</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Vida do monstro</td>
+<td>100</td>
+</tr>
+<tr>
+<td>ataque</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade do ataque do monstro</td>
+<td>30</td>
+</tr>
+<tr>
+<td>velocidade</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade da velocidade do monstro</td>
+<td>200</td>
+</tr>
+<tr>
+<td>vida_atual</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de vida que o monstro tem atualmente</td>
+<td>30</td>
+</tr>
+<tr>
+<td>defesa</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de defesa que o monstro tem</td>
+<td>25</td>
+</tr>
+<tr>
+<td>ataque_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>Ataque extra que o equipamento do chefe</td>
+<td>121</td>
+</tr>
+<tr>
+<td>defesa_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>Defesa extra que o equipamento do chefe</td>
+<td>134</td>
+</tr>
+<tr>
+<td>vida_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>Vida extra que o equipamento do chefe</td>
+<td>146</td>
+</tr>
+<tr>
+<td>velocidade_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>Velocidade extra que o equipamento do chefe</td>
+<td>156</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-digimon">Entidade: digimon</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_digimon</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador do digimon</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome do digimon</td>
+<td>Agumon</td>
+</tr>
+<tr>
+<td>defesa_por_nivel</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de defesa que o digimon ganha ao subir de nível</td>
+<td>200</td>
+</tr>
+<tr>
+<td>vida_por_nivel</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de vida que o digimon ganha ao subir de nível</td>
+<td>30</td>
+</tr>
+<tr>
+<td>ataque_por_nivel</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de ataque que o digimon ganha ao subir de nível</td>
+<td>10</td>
+</tr>
+<tr>
+<td>valocidade_por_nivel</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de velocidade de ataque que o digimon ganha ao subir de nível</td>
+<td>25</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-categoria_digimon">Entidade: categoria_digimon</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_categoria</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da categoria</td>
+<td>8685</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-anjo">Entidade: anjo</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_categoria</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da categoria</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>defesa_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>Defesa extra que essa categoria da</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-ghost">Entidade: ghost</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_categoria</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da categoria</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>ataque_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>ataque extra que essa categoria da</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-monge">Entidade: monge</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_categoria</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da categoria</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>vida_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>vida extra que essa categoria da</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-ciborg">Entidade: ciborg</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_categoria</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da categoria</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>velocidade_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>velocidade extra que essa categoria da</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-dragao">Entidade: dragao</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_categoria</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da categoria</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>defesa_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>Defesa extra que essa categoria da</td>
+<td>150</td>
+</tr>
+<tr>
+<td>ataque_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>ataque extra que essa categoria da</td>
+<td>150</td>
+</tr>
+<tr>
+<td>vida_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>vida extra que essa categoria da</td>
+<td>150</td>
+</tr>
+<tr>
+<td>velocidade_extra</td>
+<td>simples</td>
+<td>int</td>
+<td>3</td>
+<td>velocidade extra que essa categoria da</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-habilidade">Entidade: habilidade</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_habilidade</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da habilidade</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome da habilidade</td>
+<td>ataque de fogo</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>255</td>
+<td>Descrição da habilidade</td>
+<td>Ataque de fogo tira 20 de dano</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-ataque">Entidade: ataque</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_habilidade</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da habilidade</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome da habilidade</td>
+<td>ataque de fogo</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>255</td>
+<td>Descrição da habilidade</td>
+<td>Ataque de fogo tira 20 de dano</td>
+</tr>
+<tr>
+<td>dano</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de dano da habilidade</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-defesa">Entidade: defesa</h2>
+<table>
+<thead>
+<tr>
+<th>Atributos</th>
+<th>Classe</th>
+<th>Tipo</th>
+<th>Tamanho</th>
+<th>Descrição</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_habilidade</td>
+<td>Determinante</td>
+<td>uuid</td>
+<td>35</td>
+<td>Número de identificador da habilidade</td>
+<td>8685</td>
+</tr>
+<tr>
+<td>nome</td>
+<td>simples</td>
+<td>varchar</td>
+<td>20</td>
+<td>Nome da habilidade</td>
+<td>Defesa angelical</td>
+</tr>
+<tr>
+<td>descricao</td>
+<td>Simples</td>
+<td>varchar</td>
+<td>255</td>
+<td>Descrição da habilidade</td>
+<td>Cria um escudo que diminui 10% do dano</td>
+</tr>
+<tr>
+<td>defesa</td>
+<td>Simples</td>
+<td>int</td>
+<td>3</td>
+<td>Quantidade de defesa da habilidade</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.expand"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+    
+  </body>
+</html>
