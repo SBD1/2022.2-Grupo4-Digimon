@@ -12,4 +12,29 @@ async function getRegiao(jogadorCriado) {
     }
 }
 
-module.exports = { getRegiao }
+function direita(posicao_x) {
+    if (posicao_x >= 0 && posicao_x <= 2) {
+        return true;
+    }
+    return false;
+}
+function esquerda(posicao_x) {
+    if (posicao_x >= 1 && posicao_x <= 3) {
+        return true;
+    }
+    return false;
+}
+function cima(posicao_y) {
+    if (posicao_y >= 0 && posicao_y <= 1) {
+        return true;
+    }
+    return false;
+}
+function baixo(posicao_y) {
+    if (posicao_y >= 1 && posicao_y <= 2) {
+        return true;
+    }
+    return false;
+}
+
+module.exports = { getRegiao , direita, esquerda, cima, baixo}

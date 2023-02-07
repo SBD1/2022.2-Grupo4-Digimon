@@ -3,6 +3,7 @@ const db = require("./db");
 
 const digimon = require("./digimon");
 const digivice = require("./digivice");
+const regiao = require("./regiao");
 
 async function selecionarJogador() {
     console.clear();
@@ -90,38 +91,38 @@ async function movimentaJogador(resRegiao, jogadorCriado) {
     let regiaoDestino;
     let idRegiao = [0, 0, 0, 0];
 
-    console.log(`A partir da regiao ${resRegiao.nome} voce pode ir para esses lugares: \n`);
+    console.log(`\nA partir da regiao ${resRegiao.nome} voce pode ir para esses lugares: \n`);
     
-    if (esquerda(posicao_x)) {
+    if (regiao.esquerda(posicao_x)) {
         regiaoDestino = await db.query(
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x - 1
             })  AND (eixo_y = ${posicao_y})`
         );
-        console.log("1. " + regiaoDestino.rows[0].nome);
+        console.log("1 (Oeste). " + regiaoDestino.rows[0].nome);
         idRegiao[0] = regiaoDestino.rows[0].id_regiao;
     }
-    if (direita(posicao_x)) {
+    if (regiao.direita(posicao_x)) {
         regiaoDestino = await db.query(
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x + 1
             })  AND (eixo_y = ${posicao_y})`
         );
-        console.log("2. " + regiaoDestino.rows[0].nome);
+        console.log("2 (Leste). " + regiaoDestino.rows[0].nome);
         idRegiao[1] = regiaoDestino.rows[0].id_regiao;
     }
-    if (cima(posicao_y)) {
+    if (regiao.cima(posicao_y)) {
         regiaoDestino = await db.query(
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x})  AND (eixo_y = ${posicao_y + 1
             })`
         );        
-        console.log("3. " + regiaoDestino.rows[0].nome);
+        console.log("3 (Norte). " + regiaoDestino.rows[0].nome);
         idRegiao[2] = regiaoDestino.rows[0].id_regiao;
     }
-    if (baixo(posicao_y)) {
+    if (regiao.baixo(posicao_y)) {
         regiaoDestino = await db.query(
             `SELECT * FROM public.regiao WHERE (eixo_x = ${posicao_x})  AND (eixo_y = ${posicao_y - 1
             })`
         );
-        console.log("4. " + regiaoDestino.rows[0].nome);
+        console.log("4 (Sul). " + regiaoDestino.rows[0].nome);
         idRegiao[3] = regiaoDestino.rows[0].id_regiao;
     }
     console.log('\n')
@@ -140,31 +141,6 @@ async function atualizaReagioJogador(idRegiao, jogadorCriado) {
         console.error(error)
         return null;
     }
-}
-
-function direita(posicao_x) {
-    if (posicao_x >= 0 && posicao_x <= 2) {
-        return true;
-    }
-    return false;
-}
-function esquerda(posicao_x) {
-    if (posicao_x >= 1 && posicao_x <= 3) {
-        return true;
-    }
-    return false;
-}
-function cima(posicao_y) {
-    if (posicao_y >= 0 && posicao_y <= 1) {
-        return true;
-    }
-    return false;
-}
-function baixo(posicao_y) {
-    if (posicao_y >= 1 && posicao_y <= 2) {
-        return true;
-    }
-    return false;
 }
 
 module.exports = { selecionarJogador, movimentaJogador };

@@ -7,11 +7,20 @@ const npc = require("./util/npc");
 const { acessaDigivice } = require("./util/digivice");
 
 async function movimentacao(jogadorAtualizado) {
+  console.clear()
+
+  console.log("\nDIGIMON JOGO\n")
+  console.log("Menu Principal\n")
+
   const resRegiao = await regiao.getRegiao(jogadorAtualizado); // seleciona a regiao atual do jogador
+
+  console.log("---------------------------------------\n")
   console.log(`Voce esta na regiao: ${resRegiao.nome}`);
   
   const resNpc = await npc.getNPCRegiao(resRegiao);
   console.log(`Por aqui temos o NPC: ${resNpc.nome}`);
+  console.log("\n---------------------------------------")
+
   // Menu
   console.log("\nSelecione uma opcao:\n");
   console.log("1. Mover jogador");
