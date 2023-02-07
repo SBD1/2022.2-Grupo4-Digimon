@@ -10,7 +10,7 @@ begin
 	
 	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Capitulo perdido',0,0,idMapa);
 	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Terras Esquecidas',1,0,idMapa);
-	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Floresta Ecantada',2,0,idMapa);
+	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Floresta Encantada',2,0,idMapa);
 	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Floresta Digital',3,0,idMapa);
 	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Montanha das Trevas',0,1,idMapa);
 	INSERT INTO regiao (nome, eixo_x, eixo_y, id_mapa) VALUES('Terra dos Dragões',1,1,idMapa);
